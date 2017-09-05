@@ -6,10 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="gastronomiaApi" />
         <module name="previnaApi" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="gastronomiaApi" target="1.8" />
       <module name="previnaApi" target="1.8" />
     </bytecodeTargetLevel>
   </component>
