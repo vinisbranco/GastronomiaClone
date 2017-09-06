@@ -22,6 +22,11 @@ public class UserDAO extends GenericHibernateDAO<User> {
 	public User findUserByEmail(String email) {
 		return (User) findSingleObject("email", User.class, email);
 	}
+	
+	public User findUserByMatricula(String matricula) {
+		return (User) findSingleObject("matricula", User.class, matricula);
+	}
+
 
 	public long removeUser(User user) {
 		return remove(user);

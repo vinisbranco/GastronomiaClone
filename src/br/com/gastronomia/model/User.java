@@ -44,7 +44,7 @@ public class User implements Serializable {
 	@Column(name = "EMAIL", unique = true)
 	private String email;
 	
-	@Column(name = "Matricula")
+	@Column(name = "MATRICULA", unique = true)
 	private String matricula;
 	
 	@Column(name= "NAME")
@@ -158,7 +158,7 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [cpf=" + cpf + ", email=" + email + ", name=" + name + ", password=" + password + ", role=" + role
+		return "User [cpf=" + cpf + ", email=" + email + ", matricula="+ matricula +", name=" + name + ", password=" + password + ", role=" + role
 				+ ", active=" + active + "]";
 	}
 }
