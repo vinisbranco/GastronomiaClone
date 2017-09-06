@@ -33,7 +33,7 @@ public class UserBO {
 
 	public boolean createUser(User user) throws ValidationException, NoSuchAlgorithmException {
 		if (user != null) {
-			user.setRole(Constantes.ANALYST_ROLE);
+			user.setRole(Constantes.USER_ROLE);
 			user.setActive(true);
 			String encryptedPassword = EncryptUtil.encrypt2(user.getPassword());
 			user.setPassword(encryptedPassword);
@@ -67,7 +67,7 @@ public class UserBO {
 
 	public User userExists(User userLogin) throws NoSuchAlgorithmException, ValidationException {
 		userLogin.setPassword(EncryptUtil.encrypt2(userLogin.getPassword()));
-		User returnedUser = userDAO.findUserByCPF(userLogin.getCpf());
+		User returnedUser = userDAO.findUserByEmail(userLogin.getEmail());
 		if (!userLogin.getPassword().equals(returnedUser.getPassword()))
 			throw new ValidationException(MensagemContantes.MSG_ERR_USUARIO_SENHA_INVALIDOS);
 		return returnedUser;
@@ -85,9 +85,23 @@ public class UserBO {
 		if (userLogin != null) {
 			return userDAO.findUserByCPF(userLogin.getCpf());
 		}
-		throw new ValidationException("invalido");
-
+		throw new ValidationException("CPF Invalido");
 	}
+	
+	public User getUserByEmail(User userLogin) throws ValidationException {
+		if (userLogin != null) {
+			return userDAO.findUserByEmail(userLogin.getEmail());
+		}
+		throw new ValidationException("Email Invalido");
+	}
+	
+	public User getUserByMatricula(User userLogin) throws ValidationException {
+		if (userLogin != null) {
+			return userDAO.findUserByMatricula(userLogin.getMatricula());
+		}
+		throw new ValidationException("Email Invalido");
+	}
+	
 	public User getUserById(long id) throws ValidationException {
 		if (id > 0) {
 			return userDAO.findUserByID(id);
