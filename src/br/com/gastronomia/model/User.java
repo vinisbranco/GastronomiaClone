@@ -18,9 +18,10 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 /**
  * Classe modelo para o acesso ao banco de dados.
+ * Feito a partir da classe User do projeto IdeiasAges
  * 
- * @author Rodrigo Machado - rodrigo.domingos@acad.pucrs.br
- * @since 06/06/2017
+ * @author Pedro Bledow - pedro.bledow@acad.pucrs.br
+ * @since 06/09/2017
  * 
  **/
 @Entity
@@ -43,14 +44,15 @@ public class User implements Serializable {
 	@Column(name = "EMAIL", unique = true)
 	private String email;
 	
+	@Column(name = "Matricula")
+	private String matricula;
+	
 	@Column(name= "NAME")
 	private String name;
 	
 	@Column(name= "PASSWORD")
 	private String password;
 	
-	@Column(name= "PHONE")
-	private String phone;
 	
 	@Column(name= "ROLE")
 	private String role;
@@ -99,6 +101,14 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
+	}
+	
+	public String getMatricula() {
+		return matricula;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -113,14 +123,6 @@ public class User implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
 	}
 
 	public String getRole() {
@@ -156,7 +158,7 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [cpf=" + cpf + ", email=" + email + ", name=" + name + ", password=" + password + ", phone=" + phone + ", role=" + role
+		return "User [cpf=" + cpf + ", email=" + email + ", name=" + name + ", password=" + password + ", role=" + role
 				+ ", active=" + active + "]";
 	}
 }
