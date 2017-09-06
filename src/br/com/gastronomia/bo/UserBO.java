@@ -45,11 +45,11 @@ public class UserBO {
 
 	}
 
-	public long inactiveUser(long id) {
+	public long deactivateUser(long id) {
 		return userDAO.alterStatus(id, false);
 	}
 
-	public long activeUser(long id) {
+	public long activateUser(long id) {
 		return userDAO.alterStatus(id, true);
 	}
 
