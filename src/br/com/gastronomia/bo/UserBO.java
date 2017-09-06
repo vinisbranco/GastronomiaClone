@@ -49,7 +49,7 @@ public class UserBO {
 		return userDAO.alterStatus(id, false);
 	}
 
-	public long activateUser(long id) {
+	public long activeUser(long id) {
 		return userDAO.alterStatus(id, true);
 	}
 
