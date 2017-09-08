@@ -3,7 +3,6 @@ package br.com.gastronomia.dao;
 import br.com.gastronomia.db.GenericHibernateDAO;
 import br.com.gastronomia.db.HibernateUtil;
 import br.com.gastronomia.model.Ingrediente;
-import br.com.gastronomia.model.Status;
 import org.hibernate.Session;
 
 import java.util.List;
