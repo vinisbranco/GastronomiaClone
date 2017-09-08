@@ -56,14 +56,15 @@ public class AuthController {
 		User user;
 		HashMap<String, Object> responsed = new HashMap<>();
 		Token token=new Token();
-		try {
-			ObjectMapper mapper = new ObjectMapper();
-			user = userBO.userExists(userLogin);
-			 token.setToken(TokenGenerator.issueToken(mapper.writeValueAsString(user)));
+		ObjectMapper mapper = new ObjectMapper();
+		token.setToken(TokenGenerator.issueToken(mapper.writeValueAsString("teste")));
+		/*try {
+			//user = userBO.userExists(userLogin);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Response.status(UNAUTHORIZED).build();
-		}
+		}*/
 		return Response.ok().entity(token).build();
 	}
 
@@ -84,7 +85,7 @@ public class AuthController {
 	/**
 	 * Verifica se existe um usu�rio logado no sistema.
 	 *
-	 * @return Retorna o usu�rio logado.{@link br.com.ideiasages.model.User}
+	 * @return Retorna o usu�rio logado.
 	 * @throws IOException
 	 **/
 	@GET
