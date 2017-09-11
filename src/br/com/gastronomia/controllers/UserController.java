@@ -72,7 +72,7 @@ public class UserController {
 	public Response remove(@PathParam("id") Long id) throws PersistenciaException, ValidationException {
 
 		try {
-			userBO.inactiveUser(id);
+			userBO.deactivateUser(id);
 
 		} catch (Exception e) {
 

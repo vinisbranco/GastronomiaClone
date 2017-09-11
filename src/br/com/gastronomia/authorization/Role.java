@@ -3,8 +3,7 @@ package br.com.gastronomia.authorization;
 /* Must be Prime Numbers */
 public class Role {
 	public final static long ADMINISTRATOR = 2;
-	public final static long ANALYST = 3;
-	public final static long IDEALIZER = 5;
+	public final static long USER = 3;
 
 	/*
         Get the specific prime number associated with the @role
@@ -14,11 +13,8 @@ public class Role {
 		case "administrator":
 			return Role.ADMINISTRATOR;
 
-		case "analyst":
-			return Role.ANALYST;
-
-		case "idealizer":
-			return Role.IDEALIZER;
+		case "user":
+			return Role.USER;
 
 		default:
 			return -1;
