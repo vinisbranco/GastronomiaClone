@@ -19,14 +19,14 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 /**
  * Classe modelo para Atributo.
  * 
- * @author Eduardo José Silva (eduardo.silva.006@acad.pucrs.br), baseado no modelo de Rodrigo Machado (rodrigo.domingos@acad.pucrs.br) para cadastro de usuário
+ * @author Eduardo Josï¿½ Silva (eduardo.silva.006@acad.pucrs.br), baseado no modelo de Rodrigo Machado (rodrigo.domingos@acad.pucrs.br) para cadastro de usuï¿½rio
  * @since 07/9/2017
  * 
  **/
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name= "ATRIBUTO")
+@Table(name= "Atributo")
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class Atributo implements Serializable {
 
@@ -34,19 +34,19 @@ public class Atributo implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID_ATRIBUTO")
+	@Column(name = "IdAtributo")
 	private long id;
 	
-	@Column(name = "NOME")
+	@Column(name = "Nome")
 	private String nome;
 	
-	@Column(name = "UNIDADE")
+	@Column(name = "Unidade")
 	private String unidade;
 	
-	@Column(name = "MULTIPLICADOR")
+	@Column(name = "Multiplicador")
 	private long multiplicador;
 	
-	@Column(name= "STATUS")
+	@Column(name= "Status")
 	private String status;
 
 	/**

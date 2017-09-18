@@ -22,13 +22,13 @@ public class Ingrediente implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "cod_ingrediente")
+	@Column(name = "IdIngrediente")
 	private long cod_ingrediente;
 
-	@Column(name = "nome", unique = true)
+	@Column(name = "Nome", unique = true)
 	private String nome;
 
-	@Column(name= "status")
+	@Column(name= "Status")
 	private String status;
 
 

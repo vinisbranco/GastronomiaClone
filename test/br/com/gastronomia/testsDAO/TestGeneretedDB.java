@@ -1,6 +1,6 @@
- package br.com.previna.testsDAO;
+ package br.com.gastronomia.testsDAO;
 
-import br.com.previna.db.GeneratedDB;
+import br.com.gastronomia.db.GeneratedDB;
 
 /**
  * 

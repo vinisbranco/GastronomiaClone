@@ -25,7 +25,7 @@ import br.com.gastronomia.model.GrupoReceitas;
 import br.com.gastronomia.model.User;
 import br.com.gastronomia.util.EncryptUtil;
 
-@Path("users")
+@Path("grupos")
 public class GrupoController {
 	private GrupoReceitasBO grupoReceitasBO = new GrupoReceitasBO();
 	private GrupoReceitasDAO grupoReceitasDAO = new GrupoReceitasDAO();
@@ -38,7 +38,7 @@ public class GrupoController {
 	@GET
 	@Path("/")
 	@Produces("application/json; charset=UTF-8")
-	@JWTTokenNeeded
+	//@JWTTokenNeeded
 	public Response list() throws PersistenciaException, SQLException {
 		try {
 			return Response.ok().entity(grupoReceitasBO.listGroups()).status(Response.Status.ACCEPTED).build();

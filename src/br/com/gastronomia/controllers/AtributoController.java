@@ -22,7 +22,7 @@ import br.com.gastronomia.exception.ValidationException;
 import br.com.gastronomia.model.Atributo;
 import br.com.gastronomia.util.EncryptUtil;
 
-@Path("users")
+@Path("atributos")
 public class AtributoController {
 	private AtributoBO atributoBO = new AtributoBO();
 	private AtributoDAO atributoDAO = new AtributoDAO();
@@ -35,7 +35,7 @@ public class AtributoController {
 	@GET
 	@Path("/")
 	@Produces("application/json; charset=UTF-8")
-	@JWTTokenNeeded
+	//@JWTTokenNeeded
 	public Response list() throws PersistenciaException, SQLException {
 		try {
 			return Response.ok().entity(atributoBO.listAtributos()).status(Response.Status.ACCEPTED).build();

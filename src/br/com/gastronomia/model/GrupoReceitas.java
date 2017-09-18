@@ -24,7 +24,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
  **/
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "GRUPOS")
+@Table(name = "GrupoReceitas")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GrupoReceitas implements Serializable {
 
@@ -32,16 +32,16 @@ public class GrupoReceitas implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "COD_GRUPOS")
+	@Column(name = "IdGrupo")
 	private long codGrupos;
 
-	@Column(name = "NOME")
+	@Column(name = "Nome")
 	private String nome;
 
-	@Column(name = "CUSTO_PORCAO")
+	@Column(name = "CustoPorcao")
 	private double custo;
 
-	@Column(name = "STATUS")
+	@Column(name = "Status")
 	private String status;
 
 	/**
@@ -67,7 +67,7 @@ public class GrupoReceitas implements Serializable {
 	 * @param nome
 	 *            Nome de um usuario.
 	 * @param custo
-	 *            Custo de uma porção.
+	 *            Custo de uma porï¿½ï¿½o.
 	 **/
 
 	public GrupoReceitas(String nome, double custo) {
@@ -76,7 +76,7 @@ public class GrupoReceitas implements Serializable {
 	}
 
 	/**
-	 * Valida se o grupo está ativo ou não.
+	 * Valida se o grupo estï¿½ ativo ou nï¿½o.
 	 * 
 	 * @return boolean
 	 **/

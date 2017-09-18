@@ -35,7 +35,7 @@ public class UserController {
 	@GET
 	@Path("/")
 	@Produces("application/json; charset=UTF-8")
-	@JWTTokenNeeded
+	//@JWTTokenNeeded
 	public Response list() throws PersistenciaException, SQLException {
 		try {
 			return Response.ok().entity(userBO.listUser()).status(Response.Status.ACCEPTED).build();

@@ -1,11 +1,10 @@
-package br.com.previna.tests;
+package br.com.gastronomia.tests;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import br.com.previna.util.Validator;
-import br.com.previna.util.Validator.validaCpf;
+import br.com.gastronomia.util.Validator;
 
 public class TestUserBO {
 	@Test

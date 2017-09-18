@@ -1,7 +1,7 @@
-package br.com.previna.testsDAO;
+package br.com.gastronomia.testsDAO;
 
-import br.com.previna.dao.UserDAO;
-import br.com.previna.model.User;
+import br.com.gastronomia.dao.UserDAO;
+import br.com.gastronomia.model.User;
 
 /**
  * 

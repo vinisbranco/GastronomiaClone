@@ -59,7 +59,7 @@ public class GrupoReceitasBO {
 		ArrayList<GrupoReceitas> grupoReceitas = null;
 		HashMap<String, List<GrupoReceitas>> listGrupoReceitas = new HashMap<String, List<GrupoReceitas>>();
 		grupoReceitas = (ArrayList<GrupoReceitas>) grupoReceitasDAO.listAll(GrupoReceitas.class);
-		listGrupoReceitas.put("Groups", grupoReceitas);
+		listGrupoReceitas.put("Grupos", grupoReceitas);
 		return listGrupoReceitas;
 	}
 
