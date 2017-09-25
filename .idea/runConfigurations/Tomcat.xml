@@ -2,9 +2,9 @@
   <configuration default="false" name="Tomcat" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.0.38" ALTERNATIVE_JRE_ENABLED="false">
     <option name="UPDATING_POLICY" value="restart-server" />
     <deployment>
-      <artifact name="previnaApi:war exploded">
+      <artifact name="gastronomiaApi:war exploded">
         <settings>
-          <option name="CONTEXT_PATH" value="/modeloapi" />
+          <option name="CONTEXT_PATH" value="/" />
         </settings>
       </artifact>
     </deployment>
@@ -67,7 +67,10 @@
     </ConfigurationWrapper>
     <method>
       <option name="BuildArtifacts" enabled="true">
-        <artifact name="previnaApi:war exploded" />
+        <artifact name="gastronomiaApi:war exploded" />
+      </option>
+      <option name="BuildArtifacts" enabled="true">
+        <artifact name="gastronomiaApi:war exploded" />
       </option>
     </method>
   </configuration>

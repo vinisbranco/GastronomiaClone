@@ -13,11 +13,11 @@
 		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
 		<init-param>
 			<param-name>jersey.config.server.provider.packages</param-name>
-			<param-value>br.com.previna.controllers</param-value>
+			<param-value>br.com.gastronomia.controllers</param-value>
 		</init-param>
 		<init-param>
 			<param-name>org.glassfish.jersey.spi.container.ContainerResponseFilters</param-name>
-			<param-value>br.com.previna.controllers.CORSFilter</param-value>
+			<param-value>br.com.gastronomia.controllers.CORSFilter</param-value>
 		</init-param>
 	</servlet>
 	<servlet-mapping>
