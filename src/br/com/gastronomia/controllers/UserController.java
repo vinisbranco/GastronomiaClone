@@ -22,7 +22,7 @@ import br.com.gastronomia.exception.ValidationException;
 import br.com.gastronomia.model.User;
 import br.com.gastronomia.util.EncryptUtil;
 
-@Path("users")
+@Path("usuarios")
 public class UserController {
 	private UserBO userBO = new UserBO();
 	private UserDAO userDAO = new UserDAO();
@@ -51,7 +51,7 @@ public class UserController {
 	@Path("/")
 	@Consumes("application/json; charset=UTF-8")
 	@Produces("application/json; charset=UTF-8")
-	@JWTTokenNeeded
+	//@JWTTokenNeeded
 	public Response create(User user) throws PersistenciaException, ValidationException {
 
 		try {
@@ -68,7 +68,7 @@ public class UserController {
 	@DELETE
 	@Path("/{id}")
 	@Produces("application/json; charset=UTF-8")
-	@JWTTokenNeeded
+	//@JWTTokenNeeded
 	public Response remove(@PathParam("id") Long id) throws PersistenciaException, ValidationException {
 
 		try {
@@ -84,7 +84,7 @@ public class UserController {
 	@GET
 	@Path("/{id}")
 	@Produces("application/json; charset=UTF-8")
-	@JWTTokenNeeded
+	//@JWTTokenNeeded
 	public Response searchByID(@PathParam("id") Long id) throws PersistenciaException, ValidationException {
 
 		try {
@@ -102,7 +102,7 @@ public class UserController {
 	@Path("/update")
 	@Consumes("application/json; charset=UTF-8")
 	@Produces("application/json; charset=UTF-8")
-	@JWTTokenNeeded
+	//@JWTTokenNeeded
 	public Response update(User user) throws PersistenciaException, ValidationException {
 
 		try {

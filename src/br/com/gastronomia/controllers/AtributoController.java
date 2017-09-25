@@ -51,7 +51,7 @@ public class AtributoController {
 	@Path("/")
 	@Consumes("application/json; charset=UTF-8")
 	@Produces("application/json; charset=UTF-8")
-	@JWTTokenNeeded
+	//@JWTTokenNeeded
 	public Response create(Atributo atributo) throws PersistenciaException, ValidationException {
 
 		try {
@@ -68,7 +68,7 @@ public class AtributoController {
 	@DELETE
 	@Path("/{id}")
 	@Produces("application/json; charset=UTF-8")
-	@JWTTokenNeeded
+	//@JWTTokenNeeded
 	public Response remove(@PathParam("id") Long id) throws PersistenciaException, ValidationException {
 
 		try {
@@ -84,7 +84,7 @@ public class AtributoController {
 	@GET
 	@Path("/{id}")
 	@Produces("application/json; charset=UTF-8")
-	@JWTTokenNeeded
+	//@JWTTokenNeeded
 	public Response searchByID(@PathParam("id") Long id) throws PersistenciaException, ValidationException {
 
 		try {
@@ -102,7 +102,7 @@ public class AtributoController {
 	@Path("/update")
 	@Consumes("application/json; charset=UTF-8")
 	@Produces("application/json; charset=UTF-8")
-	@JWTTokenNeeded
+	//@JWTTokenNeeded
 	public Response update(Atributo atributo) throws PersistenciaException, ValidationException {
 
 		try {

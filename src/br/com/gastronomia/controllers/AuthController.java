@@ -56,15 +56,14 @@ public class AuthController {
 		User user;
 		HashMap<String, Object> responsed = new HashMap<>();
 		Token token=new Token();
-		ObjectMapper mapper = new ObjectMapper();
-		token.setToken(TokenGenerator.issueToken(mapper.writeValueAsString("teste")));
-		/*try {
-			//user = userBO.userExists(userLogin);
-
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			user = userBO.userExists(userLogin);
+			token.setToken(TokenGenerator.issueToken(mapper.writeValueAsString(user)));
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Response.status(UNAUTHORIZED).build();
-		}*/
+		}
 		return Response.ok().entity(token).build();
 	}
 

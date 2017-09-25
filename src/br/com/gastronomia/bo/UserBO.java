@@ -67,7 +67,13 @@ public class UserBO {
 
 	public User userExists(User userLogin) throws NoSuchAlgorithmException, ValidationException {
 		userLogin.setPassword(EncryptUtil.encrypt2(userLogin.getPassword()));
-		User returnedUser = userDAO.findUserByEmail(userLogin.getEmail());
+		User returnedUser = null;
+		if(userLogin.getEmail() == null){
+			returnedUser = userDAO.findUserByMatricula(userLogin.getMatricula());
+		} else {
+			returnedUser = userDAO.findUserByEmail(userLogin.getEmail());
+		}
+		System.out.println(returnedUser);
 		if (!userLogin.getPassword().equals(returnedUser.getPassword()))
 			throw new ValidationException(MensagemContantes.MSG_ERR_USUARIO_SENHA_INVALIDOS);
 		return returnedUser;

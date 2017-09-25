@@ -54,7 +54,7 @@ public class GrupoController {
 	@Path("/")
 	@Consumes("application/json; charset=UTF-8")
 	@Produces("application/json; charset=UTF-8")
-	@JWTTokenNeeded
+	//@JWTTokenNeeded
 	public Response create(GrupoReceitas grupoReceitas) throws PersistenciaException, ValidationException {
 
 		try {
@@ -71,7 +71,7 @@ public class GrupoController {
 	@DELETE
 	@Path("/{id}")
 	@Produces("application/json; charset=UTF-8")
-	@JWTTokenNeeded
+	//@JWTTokenNeeded
 	public Response remove(@PathParam("id") Long id) throws PersistenciaException, ValidationException {
 
 		try {
@@ -87,8 +87,8 @@ public class GrupoController {
 	@GET
 	@Path("/{id}")
 	@Produces("application/json; charset=UTF-8")
-	@JWTTokenNeeded
-	public Response searchByID(@PathParam("grupo") GrupoReceitas grupo) throws PersistenciaException, ValidationException {
+	//@JWTTokenNeeded
+	public Response searchByID(@PathParam("id") GrupoReceitas grupo) throws PersistenciaException, ValidationException {
 
 		try {
 			
@@ -105,7 +105,7 @@ public class GrupoController {
 	@Path("/update")
 	@Consumes("application/json; charset=UTF-8")
 	@Produces("application/json; charset=UTF-8")
-	@JWTTokenNeeded
+	//@JWTTokenNeeded
 	public Response update(GrupoReceitas grupo) throws PersistenciaException, ValidationException {
 
 		try {

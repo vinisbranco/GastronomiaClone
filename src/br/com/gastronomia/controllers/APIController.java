@@ -17,7 +17,7 @@ public class APIController {
 	public Response index() {
 		
 		User user =new User();
-		user.setName("Bruno");
+		user.setName("Luis Santana");
 		return Response.ok().entity(user).build();
 	}
 
