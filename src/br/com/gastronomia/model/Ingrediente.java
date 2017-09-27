@@ -31,9 +31,6 @@ public class Ingrediente implements Serializable {
 	@Column(name= "Status")
 	private String status;
 
-	@Column(name ="Custo")
-	private Float custo;
-
 	public Ingrediente() {
 
 	}

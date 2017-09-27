@@ -45,6 +45,7 @@ public class IngredienteController {
 	public Response create(Ingrediente ingrediente) throws PersistenciaException, ValidationException {
 
 		try {
+			System.out.println(ingrediente);
 			ingredienteBO.createIngrediente(ingrediente);
 		} catch (Exception e) {
 			return Response.ok().status(Response.Status.BAD_REQUEST).build();
