@@ -11,10 +11,10 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  * @since 09/06/2017
  * 
  **/
-public class Perfil extends User implements Serializable {
+public class Perfil extends Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private User user;
+	private Usuario usuario;
 
 	private String passwordToValidate;
 
@@ -27,8 +27,8 @@ public class Perfil extends User implements Serializable {
 		return passwordToValidate;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public void setPasswordToValidate(String passwordToValidate) {

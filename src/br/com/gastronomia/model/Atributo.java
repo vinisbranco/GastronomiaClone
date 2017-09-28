@@ -47,7 +47,7 @@ public class Atributo implements Serializable {
 	private long multiplicador;
 	
 	@Column(name= "Status")
-	private String status;
+	private boolean status;
 
 	/**
 	 * Construtor vazio.
@@ -75,7 +75,7 @@ public class Atributo implements Serializable {
 		return unidade;
 	}
 	
-	public String getStatus() {
+	public boolean getStatus() {
 		return status;
 	}
 	
@@ -91,9 +91,8 @@ public class Atributo implements Serializable {
 		this.multiplicador = multiplicador;
 	}
 	
-	public void setStatus(String status) {
-		if(status.equals("ativo") || status.equals("inativo"))
-			this.status = status;
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 
 	/**
@@ -101,7 +100,7 @@ public class Atributo implements Serializable {
 	 * 
 	 * @return String
 	 **/
-	public String isActive() {
+	public boolean isActive() {
 		return status;
 	}
 	

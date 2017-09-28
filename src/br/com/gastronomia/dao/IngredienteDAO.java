@@ -33,8 +33,7 @@ public class IngredienteDAO extends GenericHibernateDAO<Ingrediente> {
 
 	public long alterStatus(long id, boolean statusBool) {
 		Ingrediente ingrediente = findIngredienteById(id);
-		String status = (statusBool) ? "Ativo" : "Inativo";
-		ingrediente.setStatus(status);
+		ingrediente.setStatus(statusBool);
 		return merge(ingrediente);
 	}
 }

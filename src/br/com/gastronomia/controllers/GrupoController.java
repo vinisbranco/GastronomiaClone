@@ -16,13 +16,10 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 
 import br.com.gastronomia.bo.GrupoReceitasBO;
-import br.com.gastronomia.bo.UserBO;
 import br.com.gastronomia.dao.GrupoReceitasDAO;
-import br.com.gastronomia.dao.UserDAO;
 import br.com.gastronomia.exception.PersistenciaException;
 import br.com.gastronomia.exception.ValidationException;
 import br.com.gastronomia.model.GrupoReceitas;
-import br.com.gastronomia.model.User;
 import br.com.gastronomia.util.EncryptUtil;
 
 @Path("grupos")

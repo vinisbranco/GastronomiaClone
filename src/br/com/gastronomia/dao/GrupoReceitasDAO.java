@@ -36,7 +36,7 @@ public class GrupoReceitasDAO extends GenericHibernateDAO<GrupoReceitas> {
 		return merge(grupoReceitas);
 	}
 
-	public long alterStatus(long id, String status) {
+	public long alterStatus(long id, boolean status) {
 		GrupoReceitas grupoReceitas = findGroupByID(id);
 		grupoReceitas.setStatus(status);
 		return merge(grupoReceitas);

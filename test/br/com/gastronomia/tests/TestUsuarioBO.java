@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import br.com.gastronomia.util.Validator;
 
-public class TestUserBO {
+public class TestUsuarioBO {
 	@Test
 	public void testCPFTrue() {
 		assertEquals(true, Validator.validaCpf.fazConta(("61642096091")));

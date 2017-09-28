@@ -15,17 +15,17 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 
-import br.com.gastronomia.bo.UserBO;
-import br.com.gastronomia.dao.UserDAO;
+import br.com.gastronomia.bo.UsuarioBO;
+import br.com.gastronomia.dao.UsuarioDAO;
 import br.com.gastronomia.exception.PersistenciaException;
 import br.com.gastronomia.exception.ValidationException;
-import br.com.gastronomia.model.User;
+import br.com.gastronomia.model.Usuario;
 import br.com.gastronomia.util.EncryptUtil;
 
 @Path("usuarios")
-public class UserController {
-	private UserBO userBO = new UserBO();
-	private UserDAO userDAO = new UserDAO();
+public class UsuarioController {
+	private UsuarioBO usuarioBO = new UsuarioBO();
+	private UsuarioDAO usuarioDAO = new UsuarioDAO();
 	private EncryptUtil encryptUtil = new EncryptUtil();
 
 	@Context
@@ -38,7 +38,7 @@ public class UserController {
 	//@JWTTokenNeeded
 	public Response list() throws PersistenciaException, SQLException {
 		try {
-			return Response.ok().entity(userBO.listUser()).status(Response.Status.ACCEPTED).build();
+			return Response.ok().entity(usuarioBO.listUser()).status(Response.Status.ACCEPTED).build();
 
 
 		} catch (Exception e) {
@@ -52,11 +52,11 @@ public class UserController {
 	@Consumes("application/json; charset=UTF-8")
 	@Produces("application/json; charset=UTF-8")
 	//@JWTTokenNeeded
-	public Response create(User user) throws PersistenciaException, ValidationException {
+	public Response create(Usuario usuario) throws PersistenciaException, ValidationException {
 
 		try {
 
-			userBO.createUser(user);
+			usuarioBO.createUser(usuario);
 
 		} catch (Exception e) {
 			return Response.ok().status(Response.Status.BAD_REQUEST).build();
@@ -72,7 +72,7 @@ public class UserController {
 	public Response remove(@PathParam("id") Long id) throws PersistenciaException, ValidationException {
 
 		try {
-			userBO.deactivateUser(id);
+			usuarioBO.deactivateUser(id);
 
 		} catch (Exception e) {
 
@@ -89,7 +89,7 @@ public class UserController {
 
 		try {
 			
-			return Response.ok().entity(userBO.getUserById(id)).status(Response.Status.ACCEPTED).build();
+			return Response.ok().entity(usuarioBO.getUserById(id)).status(Response.Status.ACCEPTED).build();
 
 		} catch (Exception e) {
 
@@ -103,10 +103,10 @@ public class UserController {
 	@Consumes("application/json; charset=UTF-8")
 	@Produces("application/json; charset=UTF-8")
 	//@JWTTokenNeeded
-	public Response update(User user) throws PersistenciaException, ValidationException {
+	public Response update(Usuario usuario) throws PersistenciaException, ValidationException {
 
 		try {
-			userBO.updateUser(user);
+			usuarioBO.updateUser(usuario);
 
 		} catch (Exception e) {
 			e.printStackTrace();

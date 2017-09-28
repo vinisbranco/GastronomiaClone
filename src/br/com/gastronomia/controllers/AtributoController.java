@@ -77,7 +77,7 @@ public class AtributoController {
 
 			return Response.ok().status(Response.Status.BAD_REQUEST).build();
 		}
-		return Response.ok().status(Response.Status.ACCEPTED).build();
+		return Response.ok().entity(new StandardResponseDTO(true, "Atributo deletado com sucesso!")).status(Response.Status.ACCEPTED).build();
 
 	}
 	@GET
@@ -109,7 +109,7 @@ public class AtributoController {
 			e.printStackTrace();
 			return Response.ok().status(Response.Status.BAD_REQUEST).build();
 		}
-		return Response.ok().status(Response.Status.ACCEPTED).build();
+		return Response.ok().entity(new StandardResponseDTO(true, "Atributo: "+atributo.getNome()+" editado com sucesso!")).status(Response.Status.ACCEPTED).build();
 
 	}
 }

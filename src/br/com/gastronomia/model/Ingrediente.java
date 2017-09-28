@@ -23,24 +23,24 @@ public class Ingrediente implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "IdIngrediente")
-	private long cod_ingrediente;
+	private long id;
 
 	@Column(name = "Nome", unique = true)
 	private String nome;
 
 	@Column(name= "Status")
-	private String status;
+	private boolean status;
 
 	public Ingrediente() {
 
 	}
 
-	public long getCod_ingrediente() {
-		return cod_ingrediente;
+	public long getId() {
+		return id;
 	}
 
-	public void setCod_ingrediente(long cod_ingrediente) {
-		this.cod_ingrediente = cod_ingrediente;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -51,18 +51,18 @@ public class Ingrediente implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getStatus() {
+	public boolean getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(boolean status) {
 		this.status = status;
 	}
 
 	@Override
 	public String toString() {
 		return "Ingrediente{" +
-				"cod_ingrediente=" + cod_ingrediente +
+				"id=" + id +
 				", nome='" + nome + '\'' +
 				", status='" + status + '\'' +
 				'}';

@@ -18,7 +18,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 /**
  * Classe modelo para o acesso ao banco de dados.
- * Feito a partir da classe User do projeto IdeiasAges
+ * Feito a partir da classe Usuario do projeto IdeiasAges
  * 
  * @author Pedro Bledow - pedro.bledow@acad.pucrs.br
  * @since 06/09/2017
@@ -26,9 +26,9 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
  **/
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name= "Users")
+@Table(name= "Usuario")
 @JsonIgnoreProperties(ignoreUnknown=true)
-public class User implements Serializable {
+public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = -789863172532826108L;
 	
@@ -47,32 +47,32 @@ public class User implements Serializable {
 	@Column(name = "Matricula", unique = true)
 	private String matricula;
 	
-	@Column(name= "Name")
-	private String name;
+	@Column(name= "Nome")
+	private String nome;
 	
-	@Column(name= "Password")
-	private String password;
-	
-	
-	@Column(name= "Role")
-	private String role;
+	@Column(name= "Senha")
+	private String senha;
 	
 	
-	@Column(name= "Active")
-	private boolean active;
+	@Column(name= "Tipo")
+	private String tipo;
+	
+	
+	@Column(name= "Status")
+	private boolean status;
 
 	/**
 	 * Construtor vazio.
 	 * 
 	 **/
-	public User() {}
+	public Usuario() {}
 
 	/**
 	 * Construtor com o CPF.
 	 * 
 	 * @param cpf CPF de um usuario.
 	 **/
-	public User(String cpf) {
+	public Usuario(String cpf) {
 		this.cpf = cpf;
 	}
 
@@ -80,9 +80,9 @@ public class User implements Serializable {
 		return id;
 	}
 
-	public User(String cpf, String name) {
+	public Usuario(String cpf, String nome) {
 		this.cpf = cpf;
-		this.name = name;
+		this.nome = nome;
 	}
 
 	public String getCpf() {
@@ -109,28 +109,28 @@ public class User implements Serializable {
 		return matricula;
 	}
 	
-	public String getName() {
-		return name;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getSenha() {
+		return senha;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
-	public String getRole() {
-		return role;
+	public String getTipo() {
+		return tipo;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 	/**
@@ -138,13 +138,13 @@ public class User implements Serializable {
 	 * 
 	 * @return boolean
 	 **/
-	public boolean isActive() {
-		return active;
+	public boolean isStatus() {
+		return status;
 	}
 
 
-	public void setActive(boolean active) {
-		this.active = active;
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 
 	/**
@@ -158,8 +158,8 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", cpf=" + cpf + ", email=" + email + ", matricula=" + matricula + ", name=" + name
-				+ ", password=" + password + ", role=" + role + ", active=" + active + "]";
+		return "Usuario [id=" + id + ", cpf=" + cpf + ", email=" + email + ", matricula=" + matricula + ", nome=" + nome
+				+ ", senha=" + senha + ", tipo=" + tipo + ", status=" + status + "]";
 	}
 
 }

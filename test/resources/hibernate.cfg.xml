@@ -4,11 +4,11 @@
 		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
 	<session-factory>
-		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
-		<property name="hibernate.show_sql">true</property>
-		<property name="hibernate.format_sql">true</property>
-		<property name="hbm2ddl.auto">update</property> 
-		<mapping class="br.com.gastronomia.model.User" />
+		<property nome="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property nome="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+		<property nome="hibernate.show_sql">true</property>
+		<property nome="hibernate.format_sql">true</property>
+		<property nome="hbm2ddl.auto">update</property>
+		<mapping class="br.com.gastronomia.model.Usuario" />
 	</session-factory>
 </hibernate-configuration>

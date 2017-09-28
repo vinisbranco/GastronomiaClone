@@ -29,7 +29,7 @@ public class AtributoDAO extends GenericHibernateDAO<Atributo> {
 		return merge(atributo);
 	}
 
-	public long alterStatus(long id, String status) {
+	public long alterStatus(long id, boolean status) {
 		Atributo atributo = findAtributoByID(id);
 		atributo.setStatus(status);
 		return merge(atributo);

@@ -109,7 +109,7 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 	@Override
 	public String findMultipleResultString(String parameter, Object T, String valueParameter, String field) {
 		Session session = HibernateUtil.getFactory();
-		// Select T.password from FROM User T WHERE T.cpf = 10
+		// Select T.password from FROM Usuario T WHERE T.cpf = 10
 		String sql = "Select T." + field + " FROM " + T.getClass().getSimpleName() + " T  where T." + parameter + " ="
 				+ valueParameter;
 		String results = session.createQuery(sql).list().toString();

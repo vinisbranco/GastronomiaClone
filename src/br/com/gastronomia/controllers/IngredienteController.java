@@ -5,7 +5,6 @@ import br.com.gastronomia.dto.StandardResponseDTO;
 import br.com.gastronomia.exception.PersistenciaException;
 import br.com.gastronomia.exception.ValidationException;
 import br.com.gastronomia.model.Ingrediente;
-import br.com.gastronomia.model.User;
 import br.com.gastronomia.util.EncryptUtil;
 
 import javax.servlet.http.HttpServletRequest;

@@ -24,7 +24,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
  **/
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "GrupoReceitas")
+@Table(name = "GrupoReceita")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GrupoReceitas implements Serializable {
 
@@ -33,7 +33,7 @@ public class GrupoReceitas implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "IdGrupo")
-	private long codGrupos;
+	private long id;
 
 	@Column(name = "Nome")
 	private String nome;
@@ -42,7 +42,7 @@ public class GrupoReceitas implements Serializable {
 	private double custo;
 
 	@Column(name = "Status")
-	private String status;
+	private boolean status;
 
 	/**
 	 * Construtor vazio.
@@ -81,15 +81,15 @@ public class GrupoReceitas implements Serializable {
 	 * @return boolean
 	 **/
 	public boolean isActive() {
-		return (this.status.equals("Ativo"));
+		return (this.status);
 	}
 
-	public long getCodGrupos() {
-		return codGrupos;
+	public long getId() {
+		return id;
 	}
 
-	public void setCodGrupos(long codGrupos) {
-		this.codGrupos = codGrupos;
+	public void setId(long codGrupos) {
+		this.id = codGrupos;
 	}
 
 	public String getNome() {
@@ -100,7 +100,7 @@ public class GrupoReceitas implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getStatus() {
+	public boolean getStatus() {
 		return status;
 	}
 
@@ -111,13 +111,13 @@ public class GrupoReceitas implements Serializable {
 	public void setCusto(double custo) {
 		this.custo = custo;
 	}
-	public void setStatus(String status) {
+	public void setStatus(boolean status) {
 		this.status = status;
 	}
 
 	@Override
 	public String toString() {
-		return "GrupoReceitas [codGrupos=" + codGrupos + ", nome=" + nome + ", custo=" + custo + ", status=" + status
+		return "GrupoReceitas [id=" + id + ", nome=" + nome + ", custo=" + custo + ", status=" + status
 				+ "]";
 	}
 	
