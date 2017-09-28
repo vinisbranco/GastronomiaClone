@@ -25,7 +25,7 @@ public class Ingrediente implements Serializable {
 	@Column(name = "IdIngrediente")
 	private long id;
 
-	@Column(name = "Nome", unique = true)
+	@Column(name = "Nome")
 	private String nome;
 
 	@Column(name= "Status")
