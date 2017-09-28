@@ -63,9 +63,9 @@ public class GrupoReceitasBO {
 		return listGrupoReceitas;
 	}
 
-	public GrupoReceitas getGroupByCod(GrupoReceitas grupo) throws ValidationException {
-		if (grupo != null) {
-			return grupoReceitasDAO.findGroupByCod(grupo.getId());
+	public GrupoReceitas getGroupByCod(long id) throws ValidationException {
+		if (id != 0) {
+			return grupoReceitasDAO.findGroupByID(id);
 		}
 		throw new ValidationException("invalido");
 

@@ -85,11 +85,11 @@ public class GrupoController {
 	@Path("/{id}")
 	@Produces("application/json; charset=UTF-8")
 	//@JWTTokenNeeded
-	public Response searchByID(@PathParam("id") GrupoReceitas grupo) throws PersistenciaException, ValidationException {
+	public Response searchByID(@PathParam("id") Long id) throws PersistenciaException, ValidationException {
 
 		try {
 			
-			return Response.ok().entity(grupoReceitasBO.getGroupByCod(grupo)).status(Response.Status.ACCEPTED).build();
+			return Response.ok().entity(grupoReceitasBO.getGroupByCod(id)).status(Response.Status.ACCEPTED).build();
 
 		} catch (Exception e) {
 
