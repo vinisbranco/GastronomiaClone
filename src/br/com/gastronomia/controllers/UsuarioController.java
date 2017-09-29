@@ -17,6 +17,7 @@ import javax.ws.rs.core.Response;
 
 import br.com.gastronomia.bo.UsuarioBO;
 import br.com.gastronomia.dao.UsuarioDAO;
+import br.com.gastronomia.dto.StandardResponseDTO;
 import br.com.gastronomia.exception.PersistenciaException;
 import br.com.gastronomia.exception.ValidationException;
 import br.com.gastronomia.model.Usuario;
@@ -62,7 +63,7 @@ public class UsuarioController {
 			return Response.ok().status(Response.Status.BAD_REQUEST).build();
 		}
 
-		return Response.ok().status(Response.Status.ACCEPTED).build();
+		return Response.ok().entity(new StandardResponseDTO(true, "Usuario "+usuario.getNome()+ " criado com sucesso!")).status(Response.Status.ACCEPTED).build();
 	}
 
 	@DELETE
@@ -78,7 +79,7 @@ public class UsuarioController {
 
 			return Response.ok().status(Response.Status.BAD_REQUEST).build();
 		}
-		return Response.ok().status(Response.Status.ACCEPTED).build();
+		return Response.ok().entity(new StandardResponseDTO(true, "Usuario deletado com sucesso!")).status(Response.Status.ACCEPTED).build();
 
 	}
 	@GET
@@ -112,7 +113,7 @@ public class UsuarioController {
 			e.printStackTrace();
 			return Response.ok().status(Response.Status.BAD_REQUEST).build();
 		}
-		return Response.ok().status(Response.Status.ACCEPTED).build();
+		return Response.ok().entity(new StandardResponseDTO(true, "Usuario "+usuario.getNome()+ " editado com sucesso!")).status(Response.Status.ACCEPTED).build();
 
 	}
 }
