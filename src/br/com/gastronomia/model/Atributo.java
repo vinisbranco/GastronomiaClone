@@ -45,7 +45,10 @@ public class Atributo implements Serializable {
 	
 	@Column(name = "Multiplicador")
 	private long multiplicador;
-	
+
+	@Column(name= "Obrigatorio")
+	private boolean obrigatorio;
+
 	@Column(name= "Status")
 	private boolean status;
 
@@ -74,7 +77,11 @@ public class Atributo implements Serializable {
 	public String getUnidade() {
 		return unidade;
 	}
-	
+
+	public boolean getObrigatorio() {
+		return obrigatorio;
+	}
+
 	public boolean getStatus() {
 		return status;
 	}
@@ -90,7 +97,11 @@ public class Atributo implements Serializable {
 	public void setMultiplicador(long multiplicador) {
 		this.multiplicador = multiplicador;
 	}
-	
+
+	public void setObrigatorio(boolean obrigatorio) {
+		this.obrigatorio = obrigatorio;
+	}
+
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
@@ -107,6 +118,7 @@ public class Atributo implements Serializable {
 	@Override
 	public String toString() {
 		return "Atributo " + nome + " ID: " + id + " unidade: " + unidade 
-				+ " multiplicador: " + multiplicador + " status:" + status;
+				+ " multiplicador: " + multiplicador + " obrigatório:"
+				+ obrigatorio + " status:" + status;
 	}
 }
