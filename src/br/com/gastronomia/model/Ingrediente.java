@@ -4,6 +4,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Classe modelo para o acesso ao banco de dados.
@@ -28,6 +29,16 @@ public class Ingrediente implements Serializable {
 	@Column(name = "Nome")
 	private String nome;
 
+	@OneToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "fk_IdUsuario", nullable = false)
+	private Usuario criador;
+
+	@Column(name = "Origem")
+	private String origem;
+
+//	@Column(name = "Atributos")
+//	private List<Atributo> atributos;
+
 	@Column(name= "Status")
 	private boolean status;
 
@@ -51,6 +62,28 @@ public class Ingrediente implements Serializable {
 		this.nome = nome;
 	}
 
+	public Usuario getCriador() { return criador; }
+
+	public void setCriador(Usuario criador) {
+		this.criador = criador;
+	}
+
+	public String getOrigem() {
+		return origem;
+	}
+
+	public void setOrigem(String origem) {
+		this.origem = origem;
+	}
+
+//	public List<Atributo> getAtributos() {
+//		return atributos;
+//	}
+//
+//	public void setAtributos(List<Atributo> atributos) {
+//		this.atributos = atributos;
+//	}
+
 	public boolean getStatus() {
 		return status;
 	}
@@ -64,6 +97,9 @@ public class Ingrediente implements Serializable {
 		return "Ingrediente{" +
 				"id=" + id +
 				", nome='" + nome + '\'' +
+				", criador='" + criador.getNome() + '\'' +
+				", origem='" + origem + '\'' +
+//				", atributos='" + atributos + '\'' +
 				", status='" + status + '\'' +
 				'}';
 	}
