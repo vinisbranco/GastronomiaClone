@@ -4,7 +4,6 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,13 +38,13 @@ public class Ingrediente implements Serializable {
 
     //Relacionamento implementado -- lado forte
     @ManyToMany(cascade = CascadeType.PERSIST)
-    @JoinTable(name="ingrediente_atributo",
+    @JoinTable(name="Ingrediente_Atributo",
             joinColumns=
             @JoinColumn(name="ingrediente_id", referencedColumnName="IdIngrediente"),
             inverseJoinColumns=
-            @JoinColumn(name="atributo_id", referencedColumnName="IdAtributo")
+            @JoinColumn(name="ingredienteAtributo_id", referencedColumnName="fk_IdAtributo")
     )
-	private List<Atributo> atributos;
+	private List<AtributoValor> ingredienteAtributo;
 
 	@Column(name= "Status")
 	private boolean status;
@@ -84,12 +83,12 @@ public class Ingrediente implements Serializable {
 		this.origem = origem;
 	}
 
-	public List<Atributo> getAtributos() {
-		return atributos;
+	public List<AtributoValor> getIngredienteAtributo() {
+		return ingredienteAtributo;
 	}
 
-	public void setAtributos(List<Atributo> atributos) {
-		this.atributos = atributos;
+	public void setIngredienteAtributo(List<AtributoValor> ingredienteAtributo) {
+		this.ingredienteAtributo = ingredienteAtributo;
 	}
 
 	public boolean getStatus() {
@@ -107,7 +106,7 @@ public class Ingrediente implements Serializable {
 				", nome='" + nome + '\'' +
 				", criador='" + criador.getNome() + '\'' +
 				", origem='" + origem + '\'' +
-				", atributos='" + atributos + '\'' +
+				", atributos='" + ingredienteAtributo + '\'' +
 				", status='" + status + '\'' +
 				'}';
 	}
