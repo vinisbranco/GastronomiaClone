@@ -15,20 +15,32 @@ public class HibernateUtil {
 
 	public static Session getFactory() {
 		try {
-			Properties prop = ReadProperties.read();
-			Configuration config = new Configuration().configure("hibernate.cfg.xml");
-			config.setProperty("hibernate.connection.url", prop.getProperty("conexao.url"));
-			config.setProperty("hibernate.connection.password", prop.getProperty("conexao.password"));
-			config.setProperty("hibernate.connection.username", prop.getProperty("conexao.user"));
-			factory = config.buildSessionFactory();
-			session = factory.openSession();
+			if (factory == null) {
+				Properties prop = ReadProperties.read();
+				Configuration config = new Configuration().configure("hibernate.cfg.xml");
+				config.setProperty("hibernate.connection.url", prop.getProperty("conexao.url"));
+				config.setProperty("hibernate.connection.password", prop.getProperty("conexao.password"));
+				config.setProperty("hibernate.connection.username", prop.getProperty("conexao.user"));
+				factory = config.buildSessionFactory();
+			}
+
+
+				session = factory.openSession();
+
+
 		} catch (Throwable ex) {
 			ex.printStackTrace();
 			System.out.println("Erro ao iniciar sessao no HibernateUtil: " + ex.getMessage());
 			System.err.println("Failed to create sessionFactory object." + ex);
 			throw new ExceptionInInitializerError(ex);
 		}
+
 		return session;
 	}
+	public static void closeFactory() {
+
+		factory.close();
+	}
+
 
 }

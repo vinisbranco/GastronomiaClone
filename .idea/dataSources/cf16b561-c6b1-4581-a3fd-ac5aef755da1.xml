@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="gastronomia@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.4">
+    <root id="1"/>
+    <schema id="2" parent="1" name="gastronomia">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="ages_e"/>
+    <schema id="4" parent="1" name="audio_e"/>
+    <schema id="5" parent="1" name="biblioteca_e"/>
+    <schema id="6" parent="1" name="cvages_e"/>
+    <schema id="7" parent="1" name="ideias"/>
+    <schema id="8" parent="1" name="information_schema"/>
+    <schema id="9" parent="1" name="modelo_e"/>
+    <schema id="10" parent="1" name="mysql"/>
+    <schema id="11" parent="1" name="performance_schema"/>
+    <schema id="12" parent="1" name="pet"/>
+    <schema id="13" parent="1" name="sys"/>
+    <schema id="14" parent="1" name="trocas"/>
+    <table id="15" parent="2" name="GrupoReceita"/>
+    <table id="16" parent="2" name="Usuario"/>
+    <column id="17" parent="15" name="IdGrupo">
+      <Position>1</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="18" parent="15" name="CustoPorcao">
+      <Position>2</Position>
+      <DataType>double|0</DataType>
+    </column>
+    <column id="19" parent="15" name="Nome">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="20" parent="15" name="Status">
+      <Position>4</Position>
+      <DataType>bit(1)|0</DataType>
+    </column>
+    <key id="21" parent="15" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>IdGrupo</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="22" parent="16" name="IdUsuario">
+      <Position>1</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="23" parent="16" name="Cpf">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="24" parent="16" name="Email">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="25" parent="16" name="Matricula">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="26" parent="16" name="Nome">
+      <Position>5</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="27" parent="16" name="Senha">
+      <Position>6</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="28" parent="16" name="Status">
+      <Position>7</Position>
+      <DataType>bit(1)|0</DataType>
+    </column>
+    <column id="29" parent="16" name="Tipo">
+      <Position>8</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <index id="30" parent="16" name="UK_9l01m9gsu86sg0prg0nvlet1g">
+      <ColNames>Cpf</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="31" parent="16" name="UK_9o4qt7v385x9y2h2u3ypqvc8f">
+      <ColNames>Matricula</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="32" parent="16" name="UK_rhs72iqjkdwaomorunwfom7ge">
+      <ColNames>Email</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="33" parent="16" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>IdUsuario</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="34" parent="16" name="UK_9l01m9gsu86sg0prg0nvlet1g">
+      <ColNames>Cpf</ColNames>
+      <UnderlyingIndexName>UK_9l01m9gsu86sg0prg0nvlet1g</UnderlyingIndexName>
+    </key>
+    <key id="35" parent="16" name="UK_rhs72iqjkdwaomorunwfom7ge">
+      <ColNames>Email</ColNames>
+      <UnderlyingIndexName>UK_rhs72iqjkdwaomorunwfom7ge</UnderlyingIndexName>
+    </key>
+    <key id="36" parent="16" name="UK_9o4qt7v385x9y2h2u3ypqvc8f">
+      <ColNames>Matricula</ColNames>
+      <UnderlyingIndexName>UK_9o4qt7v385x9y2h2u3ypqvc8f</UnderlyingIndexName>
+    </key>
+  </database-model>
+</dataSource>
