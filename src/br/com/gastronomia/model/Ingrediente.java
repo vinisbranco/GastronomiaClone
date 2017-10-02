@@ -1,6 +1,7 @@
 package br.com.gastronomia.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -17,6 +18,7 @@ import java.util.List;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name= "Ingrediente")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Ingrediente implements Serializable {
 
 	private static final long serialVersionUID = -789863172532826108L;
@@ -37,9 +39,9 @@ public class Ingrediente implements Serializable {
 	private String origem;
 
     //Relacionamento implementado -- lado forte
-    @OneToMany(mappedBy = "ingrediente", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "ingrediente", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonManagedReference
-	private List<AtributoValor> ingredienteAtributo;
+	private List<IngredienteAtributo> ingredienteAtributo;
 
 	@Column(name= "Status")
 	private boolean status;
@@ -78,11 +80,11 @@ public class Ingrediente implements Serializable {
 		this.origem = origem;
 	}
 
-	public List<AtributoValor> getIngredienteAtributo() {
+	public List<IngredienteAtributo> getIngredienteAtributo() {
 		return ingredienteAtributo;
 	}
 
-	public void setIngredienteAtributo(List<AtributoValor> ingredienteAtributo) {
+	public void setIngredienteAtributo(List<IngredienteAtributo> ingredienteAtributo) {
 		this.ingredienteAtributo = ingredienteAtributo;
 	}
 
@@ -94,14 +96,15 @@ public class Ingrediente implements Serializable {
 		this.status = status;
 	}
 
-	@Override
-	public String toString() {
-		return "Ingrediente{" +
-				"id=" + id +
-				", nome='" + nome + '\'' +
-				", criador='" + criador.getNome() + '\'' +
-				", origem='" + origem + '\'' +
-				", status='" + status + '\'' +
-				'}';
-	}
+    @Override
+    public String toString() {
+        return "Ingrediente{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", criador=" + criador +
+                ", origem='" + origem + '\'' +
+                ", ingredienteAtributo=" + ingredienteAtributo +
+                ", status=" + status +
+                '}';
+    }
 }

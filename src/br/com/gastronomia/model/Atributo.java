@@ -2,7 +2,7 @@ package br.com.gastronomia.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 /**
  * Classe modelo para Atributo.
  * 
@@ -14,6 +14,7 @@ import javax.persistence.*;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name= "Atributo")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Atributo implements Serializable {
 
 	private static final long serialVersionUID = -789863172532826108L;
