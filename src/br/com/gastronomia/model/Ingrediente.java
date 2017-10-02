@@ -36,10 +36,19 @@ public class Ingrediente implements Serializable {
 	@Column(name = "Origem")
 	private String origem;
 
-    //Relacionamento implementado -- lado forte
+
+	@ManyToMany
+	@JoinTable(name="Ingrediente_Atributo",
+			joinColumns={@JoinColumn(name="IdIngrediente")},
+			inverseJoinColumns={@JoinColumn(name="IdAtributo")}
+	)
+	private List<Atributo> atributos;
+
+
+    /*//Relacionamento implementado -- lado forte
     @OneToMany(mappedBy = "ingrediente", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JsonManagedReference
-	private List<AtributoValor> ingredienteAtributo;
+	private List<AtributoValor> ingredienteAtributo;*/
 
 	@Column(name= "Status")
 	private boolean status;
@@ -78,14 +87,14 @@ public class Ingrediente implements Serializable {
 		this.origem = origem;
 	}
 
-	public List<AtributoValor> getIngredienteAtributo() {
+	/*public List<AtributoValor> getIngredienteAtributo() {
 		return ingredienteAtributo;
 	}
 
 	public void setIngredienteAtributo(List<AtributoValor> ingredienteAtributo) {
 		this.ingredienteAtributo = ingredienteAtributo;
 	}
-
+*/
 	public boolean getStatus() {
 		return status;
 	}
@@ -94,6 +103,14 @@ public class Ingrediente implements Serializable {
 		this.status = status;
 	}
 
+
+	public List<Atributo> getAtributos() {
+		return atributos;
+	}
+
+	public void setAtributos(List<Atributo> atributos) {
+		this.atributos = atributos;
+	}
 	@Override
 	public String toString() {
 		return "Ingrediente{" +
@@ -104,4 +121,5 @@ public class Ingrediente implements Serializable {
 				", status='" + status + '\'' +
 				'}';
 	}
+
 }

@@ -10,7 +10,7 @@ import java.io.Serializable;
  * Classe modelo para o acesso ao banco de dados.
  *
  * @author Virgilius Santos - virgilius.santos@acad.pucrs.br
- * @since 11/08/2017
+ * @since
  *
  **/
 @Entity

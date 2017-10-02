@@ -1,6 +1,7 @@
 package br.com.gastronomia.model;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.*;
 
 /**
@@ -37,6 +38,9 @@ public class Atributo implements Serializable {
 
 	@Column(name= "Status")
 	private boolean status;
+
+	@ManyToMany(mappedBy="atributos")
+	private List<Ingrediente> ingredientes;
 
 	/**
 	 * Construtor vazio.
@@ -99,9 +103,18 @@ public class Atributo implements Serializable {
 		return status;
 	}
 
+
+
+	public List<Ingrediente> getIngredientes() {
+		return ingredientes;
+	}
+
+	public void setIngredientes(List<Ingrediente> ingredientes) {
+		this.ingredientes = ingredientes;
+	}
 	@Override
 	public String toString() {
-		return "Atributo " + nome + " ID: " + id + " unidade: " + unidade 
+		return "Atributo " + nome + " ID: " + id + " unidade: " + unidade
 				+ " multiplicador: " + multiplicador + " obrigatório:"
 				+ obrigatorio + " status:" + status;
 	}
