@@ -2,7 +2,6 @@ package br.com.gastronomia.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 /**
  * Classe modelo para Atributo.
@@ -15,7 +14,6 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name= "Atributo")
-@JsonIgnoreProperties(ignoreUnknown=true)
 public class Atributo implements Serializable {
 
 	private static final long serialVersionUID = -789863172532826108L;
@@ -100,7 +98,7 @@ public class Atributo implements Serializable {
 	public boolean isActive() {
 		return status;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Atributo " + nome + " ID: " + id + " unidade: " + unidade 

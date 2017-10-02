@@ -1,6 +1,7 @@
 package br.com.gastronomia.model;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,7 +17,6 @@ import java.util.List;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name= "Ingrediente")
-@JsonIgnoreProperties(ignoreUnknown=true)
 public class Ingrediente implements Serializable {
 
 	private static final long serialVersionUID = -789863172532826108L;
@@ -37,13 +37,8 @@ public class Ingrediente implements Serializable {
 	private String origem;
 
     //Relacionamento implementado -- lado forte
-    @ManyToMany(cascade = CascadeType.PERSIST)
-    @JoinTable(name="Ingrediente_Atributo",
-            joinColumns=
-            @JoinColumn(name="ingrediente_id", referencedColumnName="IdIngrediente"),
-            inverseJoinColumns=
-            @JoinColumn(name="ingredienteAtributo_id", referencedColumnName="fk_IdAtributo")
-    )
+    @OneToMany(mappedBy = "ingrediente", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @JsonManagedReference
 	private List<AtributoValor> ingredienteAtributo;
 
 	@Column(name= "Status")
@@ -106,7 +101,6 @@ public class Ingrediente implements Serializable {
 				", nome='" + nome + '\'' +
 				", criador='" + criador.getNome() + '\'' +
 				", origem='" + origem + '\'' +
-				", atributos='" + ingredienteAtributo + '\'' +
 				", status='" + status + '\'' +
 				'}';
 	}

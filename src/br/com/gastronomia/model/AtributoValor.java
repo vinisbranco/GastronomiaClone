@@ -1,6 +1,8 @@
 package br.com.gastronomia.model;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -13,19 +15,28 @@ import java.io.Serializable;
  **/
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name= "Atributo_Valor")
-@JsonIgnoreProperties(ignoreUnknown=true)
+@Table(name= "Ingrediente_Atributo")
 public class AtributoValor implements Serializable {
 
     private static final long serialVersionUID = -78917652532826108L;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IdIngredienteAtributo")
+    private long id;
+
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "fk_IdAtributo", nullable = false)
     private Atributo atributo;
 
     @Column(name = "Valor")
     private String valor;
+
+
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @JoinColumn(name = "fk_IdIngrediente", nullable = false)
+    @JsonBackReference
+    private Ingrediente ingrediente;
 
     public AtributoValor() {
     }
@@ -44,6 +55,14 @@ public class AtributoValor implements Serializable {
 
     public void setValor(String valor) {
         this.valor = valor;
+    }
+
+    public Ingrediente getIngrediente() {
+        return ingrediente;
+    }
+
+    public void setIngrediente(Ingrediente ingrediente) {
+        this.ingrediente = ingrediente;
     }
 
     @Override
