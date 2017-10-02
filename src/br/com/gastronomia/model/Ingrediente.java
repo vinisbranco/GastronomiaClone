@@ -1,9 +1,11 @@
 package br.com.gastronomia.model;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Classe modelo para o acesso ao banco de dados.
@@ -15,7 +17,6 @@ import java.io.Serializable;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name= "Ingrediente")
-@JsonIgnoreProperties(ignoreUnknown=true)
 public class Ingrediente implements Serializable {
 
 	private static final long serialVersionUID = -789863172532826108L;
@@ -25,8 +26,20 @@ public class Ingrediente implements Serializable {
 	@Column(name = "IdIngrediente")
 	private long id;
 
-	@Column(name = "Nome", unique = true)
+	@Column(name = "Nome")
 	private String nome;
+
+	@OneToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "fk_IdUsuario", nullable = false)
+	private Usuario criador;
+
+	@Column(name = "Origem")
+	private String origem;
+
+    //Relacionamento implementado -- lado forte
+    @OneToMany(mappedBy = "ingrediente", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @JsonManagedReference
+	private List<AtributoValor> ingredienteAtributo;
 
 	@Column(name= "Status")
 	private boolean status;
@@ -51,6 +64,28 @@ public class Ingrediente implements Serializable {
 		this.nome = nome;
 	}
 
+	public Usuario getCriador() { return criador; }
+
+	public void setCriador(Usuario criador) {
+		this.criador = criador;
+	}
+
+	public String getOrigem() {
+		return origem;
+	}
+
+	public void setOrigem(String origem) {
+		this.origem = origem;
+	}
+
+	public List<AtributoValor> getIngredienteAtributo() {
+		return ingredienteAtributo;
+	}
+
+	public void setIngredienteAtributo(List<AtributoValor> ingredienteAtributo) {
+		this.ingredienteAtributo = ingredienteAtributo;
+	}
+
 	public boolean getStatus() {
 		return status;
 	}
@@ -64,6 +99,8 @@ public class Ingrediente implements Serializable {
 		return "Ingrediente{" +
 				"id=" + id +
 				", nome='" + nome + '\'' +
+				", criador='" + criador.getNome() + '\'' +
+				", origem='" + origem + '\'' +
 				", status='" + status + '\'' +
 				'}';
 	}

@@ -20,7 +20,7 @@ public class IngredienteDAO extends GenericHibernateDAO<Ingrediente> {
 	}
 
 	public Ingrediente findIngredienteByName(String nome) {
-		return (Ingrediente) findSingleObject("nome", Ingrediente.class, nome);
+		return (Ingrediente) findSingleObject("Nome", Ingrediente.class, nome);
 	}
 
 	public Ingrediente findIngredienteById(long id) {

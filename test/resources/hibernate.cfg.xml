@@ -10,5 +10,6 @@
 		<property nome="hibernate.format_sql">true</property>
 		<property nome="hbm2ddl.auto">update</property>
 		<mapping class="br.com.gastronomia.model.Usuario" />
+        <mapping class="br.com.gastronomia.model.AtributoValor" />
 	</session-factory>
 </hibernate-configuration>

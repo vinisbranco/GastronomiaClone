@@ -83,7 +83,7 @@ public class UsuarioBO {
 		ArrayList<Usuario> usuarios = null;
 		HashMap<String, List<Usuario>> listUsers = new HashMap<String, List<Usuario>>();
 		usuarios = (ArrayList<Usuario>) usuarioDAO.listAll(Usuario.class);
-		listUsers.put("Users", usuarios);
+		listUsers.put("Usuarios", usuarios);
 		return listUsers;
 	}
 

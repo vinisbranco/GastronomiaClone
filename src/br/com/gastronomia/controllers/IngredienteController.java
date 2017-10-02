@@ -65,7 +65,7 @@ public class IngredienteController {
 
 			return Response.ok().status(Response.Status.BAD_REQUEST).build();
 		}
-		return Response.ok().entity(new StandardResponseDTO(true, "Descadastrado")).status(Response.Status.ACCEPTED).build();
+		return Response.ok().entity(new StandardResponseDTO(true, "Ingrediente deletado com sucesso!")).status(Response.Status.ACCEPTED).build();
 
 	}
 	@GET
@@ -94,7 +94,7 @@ public class IngredienteController {
 			e.printStackTrace();
 			return Response.ok().status(Response.Status.BAD_REQUEST).build();
 		}
-		return Response.ok().entity(new StandardResponseDTO(true, "Atualizado")).status(Response.Status.ACCEPTED).build();
+		return Response.ok().entity(new StandardResponseDTO(true, "Ingrediente "+ingrediente.getNome()+ " editado com sucesso!")).status(Response.Status.ACCEPTED).build();
 
 	}
 }
