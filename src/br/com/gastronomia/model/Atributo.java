@@ -1,15 +1,10 @@
 package br.com.gastronomia.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.Table;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import javax.validation.constraints.Email;
 
@@ -85,18 +80,16 @@ public class Atributo implements Serializable {
 	public boolean getStatus() {
 		return status;
 	}
-	
-	public long getMultiplicador() {
-		return multiplicador;
-	}
+
+    public long getMultiplicador() {
+        return multiplicador;
+    }
 
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	public void setMultiplicador(long multiplicador) {
-		this.multiplicador = multiplicador;
-	}
+
+    public void setMultiplicador(long multiplicador) { this.multiplicador = multiplicador; }
 
 	public void setObrigatorio(boolean obrigatorio) {
 		this.obrigatorio = obrigatorio;
