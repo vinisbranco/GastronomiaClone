@@ -2,6 +2,7 @@ package br.com.gastronomia.model;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,39 +15,30 @@ import java.io.Serializable;
  *
  **/
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name= "Ingrediente_Atributo")
-public class AtributoValor implements Serializable {
+@AssociationOverrides({
+        @AssociationOverride(name ="pk.item", joinColumns = @JoinColumn(name ="item_id")),
+        @AssociationOverride(name ="pk.product", joinColumns = @JoinColumn(name ="product_id"))
+})public class IngredienteAtributo implements Serializable {
 
     private static final long serialVersionUID = -78917652532826108L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdIngredienteAtributo")
-    private long id;
+    @ManyToOne
+    @JoinColumn(name = "IdIngrediente", nullable = false)
+    @JsonBackReference
+    private Ingrediente ingrediente;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "fk_IdAtributo", nullable = false)
+    @Id
+    @ManyToOne(
+    @JoinColumn(name = "IdAtributo", nullable = false)
     private Atributo atributo;
 
     @Column(name = "Valor")
     private String valor;
 
 
-    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    @JoinColumn(name = "fk_IdIngrediente", nullable = false)
-    @JsonBackReference
-    private Ingrediente ingrediente;
-
-    public AtributoValor() {
-    }
-
-    public Atributo getAtributo() {
-        return atributo;
-    }
-
-    public void setAtributo(Atributo atributo) {
-        this.atributo = atributo;
+    public IngredienteAtributo() {
     }
 
     public String getValor() {
@@ -57,6 +49,7 @@ public class AtributoValor implements Serializable {
         this.valor = valor;
     }
 
+
     public Ingrediente getIngrediente() {
         return ingrediente;
     }
@@ -65,10 +58,19 @@ public class AtributoValor implements Serializable {
         this.ingrediente = ingrediente;
     }
 
+    public Atributo getAtributo() {
+        return atributo;
+    }
+
+    public void setAtributo(Atributo atributo) {
+        this.atributo = atributo;
+    }
+
     @Override
     public String toString() {
         return "IngredienteAtributo{" +
-                "atributo=" + atributo +
+                "ingrediente=" + ingrediente +
+                ", atributo=" + atributo +
                 ", valor='" + valor + '\'' +
                 '}';
     }

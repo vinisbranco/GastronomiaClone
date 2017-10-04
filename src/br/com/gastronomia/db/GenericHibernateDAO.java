@@ -78,8 +78,8 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 		
 		try {
 			tx = session.beginTransaction();
-			tx.commit();
-			return (T) session.find(c,id);
+			T t = (T) session.find(c,id);
+			return t;
 			
 		} catch (HibernateException e) {
 			if (tx != null)

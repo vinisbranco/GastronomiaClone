@@ -3,7 +3,7 @@ package br.com.gastronomia.model;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 /**
  * Classe modelo para Atributo.
  * 
@@ -15,6 +15,7 @@ import javax.persistence.*;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name= "Atributo")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Atributo implements Serializable {
 
 	private static final long serialVersionUID = -789863172532826108L;
@@ -39,8 +40,8 @@ public class Atributo implements Serializable {
 	@Column(name= "Status")
 	private boolean status;
 
-	@ManyToMany(mappedBy="atributos")
-	private List<Ingrediente> ingredientes;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy ="pk.atributo")
+	private IngredienteAtributo ingredienteAtributo;
 
 	/**
 	 * Construtor vazio.
@@ -94,6 +95,8 @@ public class Atributo implements Serializable {
 		this.status = status;
 	}
 
+
+
 	/**
 	 * Valida se o usuario esta ativo ou nao.
 	 * 
@@ -103,11 +106,6 @@ public class Atributo implements Serializable {
 		return status;
 	}
 
-
-
-	public List<Ingrediente> getIngredientes() {
-		return ingredientes;
-	}
 
 	public void setIngredientes(List<Ingrediente> ingredientes) {
 		this.ingredientes = ingredientes;

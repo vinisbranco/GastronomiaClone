@@ -1,19 +1,9 @@
 package br.com.gastronomia.model;
 
-import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.Table;
-import javax.persistence.Id;
-
-import javax.validation.constraints.Email;
-
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
+import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Classe modelo para o acesso ao banco de dados.
@@ -26,6 +16,8 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "GrupoReceita")
 @JsonIgnoreProperties(ignoreUnknown = true)
+@NamedQuery(name="GrupoReceita.findNameUser", query="SELECT c FROM GrupoReceita g where c.usuario.nome like:"vname"")
+
 public class GrupoReceitas implements Serializable {
 
 	private static final long serialVersionUID = -789863172532826108L;
@@ -43,6 +35,8 @@ public class GrupoReceitas implements Serializable {
 
 	@Column(name = "Status")
 	private boolean status;
+
+	private Usuario useuario;
 
 	/**
 	 * Construtor vazio.

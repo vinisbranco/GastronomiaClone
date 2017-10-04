@@ -1,6 +1,7 @@
 package br.com.gastronomia.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -17,6 +18,7 @@ import java.util.List;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name= "Ingrediente")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Ingrediente implements Serializable {
 
 	private static final long serialVersionUID = -789863172532826108L;
@@ -36,19 +38,9 @@ public class Ingrediente implements Serializable {
 	@Column(name = "Origem")
 	private String origem;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy ="pk.igrediente")
+  	private IngredienteAtributo ingredienteAtributo;
 
-	@ManyToMany
-	@JoinTable(name="Ingrediente_Atributo",
-			joinColumns={@JoinColumn(name="IdIngrediente")},
-			inverseJoinColumns={@JoinColumn(name="IdAtributo")}
-	)
-	private List<Atributo> atributos;
-
-
-    /*//Relacionamento implementado -- lado forte
-    @OneToMany(mappedBy = "ingrediente", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    @JsonManagedReference
-	private List<AtributoValor> ingredienteAtributo;*/
 
 	@Column(name= "Status")
 	private boolean status;
@@ -87,14 +79,7 @@ public class Ingrediente implements Serializable {
 		this.origem = origem;
 	}
 
-	/*public List<AtributoValor> getIngredienteAtributo() {
-		return ingredienteAtributo;
-	}
 
-	public void setIngredienteAtributo(List<AtributoValor> ingredienteAtributo) {
-		this.ingredienteAtributo = ingredienteAtributo;
-	}
-*/
 	public boolean getStatus() {
 		return status;
 	}
@@ -104,13 +89,7 @@ public class Ingrediente implements Serializable {
 	}
 
 
-	public List<Atributo> getAtributos() {
-		return atributos;
-	}
 
-	public void setAtributos(List<Atributo> atributos) {
-		this.atributos = atributos;
-	}
 	@Override
 	public String toString() {
 		return "Ingrediente{" +
@@ -121,5 +100,4 @@ public class Ingrediente implements Serializable {
 				", status='" + status + '\'' +
 				'}';
 	}
-
 }

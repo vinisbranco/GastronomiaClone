@@ -14,6 +14,8 @@
 		<mapping class="br.com.gastronomia.model.Ingrediente" />
 		<mapping class="br.com.gastronomia.model.GrupoReceitas" />
 		<mapping class="br.com.gastronomia.model.Atributo" />
-       <!-- <mapping class="br.com.gastronomia.model.AtributoValor" />-->
+
+        <mapping class="br.com.gastronomia.model.IngredienteAtributo" />
+
 	</session-factory>
 </hibernate-configuration>
