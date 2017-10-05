@@ -118,11 +118,11 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 	}
 
 	@Override
-	public Object findSingleObject(String parameter, Class<?> T, String valueParameter) {
+	public Object findSingleObject(String parameter, Class<?> T, Object valueParameter) {
 		Session session = HibernateUtil.getFactory();
 		
-		String hql = "Select T FROM " + T.getSimpleName() + " T  where T." + parameter + " = ?";
-		return session.createQuery(hql).setString(0, valueParameter).getSingleResult();
+		String hql = "Select T FROM " + T.getSimpleName() + " T  where T." + parameter + " = :" +parameter ;
+		return session.createQuery(hql).setParameter(parameter, valueParameter).getSingleResult();
 
 		
 	}

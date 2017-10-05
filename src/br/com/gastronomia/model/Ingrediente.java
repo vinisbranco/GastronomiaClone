@@ -32,7 +32,7 @@ public class Ingrediente implements Serializable {
 	private String nome;
 
 	@OneToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "fk_IdUsuario", nullable = false)
+	@JoinColumn(name = "IdIngrediente", nullable = false)
 	private Usuario criador;
 
 	@Column(name = "Origem")

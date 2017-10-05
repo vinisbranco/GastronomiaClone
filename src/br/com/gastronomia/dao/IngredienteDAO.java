@@ -24,7 +24,7 @@ public class IngredienteDAO extends GenericHibernateDAO<Ingrediente> {
 	}
 
 	public Ingrediente findIngredienteById(long id) {
-		return (Ingrediente) findId(id, Ingrediente.class);
+		return (Ingrediente) findSingleObject("id", Ingrediente.class, id);
 	}
 
 	public long updateIngrediente(Ingrediente ingrediente) {
