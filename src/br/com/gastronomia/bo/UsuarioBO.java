@@ -37,7 +37,6 @@ public class UsuarioBO {
 			usuario.setStatus(true);
 			String encryptedPassword = EncryptUtil.encrypt2(usuario.getSenha());
 			usuario.setSenha(encryptedPassword);
-			validateCPF(usuario);
 			usuarioDAO.save(usuario);
 			return true;
 		}
@@ -53,8 +52,10 @@ public class UsuarioBO {
 		return usuarioDAO.alterStatus(id, true);
 	}
 
-	public long updateUser(Usuario usuario) throws ValidationException {
+	public long updateUser(Usuario usuario) throws ValidationException, NoSuchAlgorithmException {
 		if (usuario != null) {
+			String encryptedPassword = EncryptUtil.encrypt2(usuario.getSenha());
+			usuario.setSenha(encryptedPassword);
 			return usuarioDAO.updateUser(usuario);
 		}
 		throw new ValidationException("invalido");
@@ -73,7 +74,6 @@ public class UsuarioBO {
 		} else {
 			returnedUsuario = usuarioDAO.findUserByEmail(usuarioLogin.getEmail());
 		}
-		System.out.println(returnedUsuario);
 		if (!usuarioLogin.getSenha().equals(returnedUsuario.getSenha()))
 			throw new ValidationException(MensagemContantes.MSG_ERR_USUARIO_SENHA_INVALIDOS);
 		return returnedUsuario;
