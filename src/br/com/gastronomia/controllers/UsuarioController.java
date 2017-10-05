@@ -40,8 +40,6 @@ public class UsuarioController {
 	public Response list() throws PersistenciaException, SQLException {
 		try {
 			return Response.ok().entity(usuarioBO.listUser()).status(Response.Status.ACCEPTED).build();
-
-
 		} catch (Exception e) {
 			return Response.ok().status(Response.Status.BAD_REQUEST).build();
 		}
@@ -56,9 +54,7 @@ public class UsuarioController {
 	public Response create(Usuario usuario) throws PersistenciaException, ValidationException {
 
 		try {
-
 			usuarioBO.createUser(usuario);
-
 		} catch (Exception e) {
 			return Response.ok().status(Response.Status.BAD_REQUEST).build();
 		}
@@ -74,9 +70,7 @@ public class UsuarioController {
 
 		try {
 			usuarioBO.deactivateUser(id);
-
 		} catch (Exception e) {
-
 			return Response.ok().status(Response.Status.BAD_REQUEST).build();
 		}
 		return Response.ok().entity(new StandardResponseDTO(true, "Usuario deletado com sucesso!")).status(Response.Status.ACCEPTED).build();
@@ -89,11 +83,9 @@ public class UsuarioController {
 	public Response searchByID(@PathParam("id") Long id) throws PersistenciaException, ValidationException {
 
 		try {
-			
 			return Response.ok().entity(usuarioBO.getUserById(id)).status(Response.Status.ACCEPTED).build();
 
 		} catch (Exception e) {
-
 			return Response.ok().status(Response.Status.BAD_REQUEST).build();
 		}
 
@@ -108,7 +100,6 @@ public class UsuarioController {
 
 		try {
 			usuarioBO.updateUser(usuario);
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Response.ok().status(Response.Status.BAD_REQUEST).build();
