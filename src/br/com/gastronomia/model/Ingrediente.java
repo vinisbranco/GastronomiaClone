@@ -6,7 +6,9 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Classe modelo para o acesso ao banco de dados.
@@ -41,7 +43,7 @@ public class Ingrediente implements Serializable {
     //Relacionamento implementado -- lado forte
     @OneToMany(mappedBy = "ingrediente", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonManagedReference
-	private List<IngredienteAtributo> ingredienteAtributo;
+	private Set<IngredienteAtributo> ingredienteAtributo = new HashSet<>();
 
 	@Column(name= "Status")
 	private boolean status;
@@ -80,11 +82,11 @@ public class Ingrediente implements Serializable {
 		this.origem = origem;
 	}
 
-	public List<IngredienteAtributo> getIngredienteAtributo() {
+	public Set<IngredienteAtributo> getIngredienteAtributo() {
 		return ingredienteAtributo;
 	}
 
-	public void setIngredienteAtributo(List<IngredienteAtributo> ingredienteAtributo) {
+	public void setIngredienteAtributo(Set<IngredienteAtributo> ingredienteAtributo) {
 		this.ingredienteAtributo = ingredienteAtributo;
 	}
 
