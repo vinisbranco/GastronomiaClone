@@ -10,5 +10,5 @@ public interface GenericDAO<T> {
 	public String findSingleResultString(String parameter, Object T, String valueParameter, String field);
 	public long merge(Object T);
 	String findMultipleResultString(String parameter, Object T, String valueParameter, String field);
-	Object findSingleObject(String parameter, Class<?> T, String valueParameter);
+	Object findSingleObject(String parameter, Class<?> T, Object valueParameter);
 }
