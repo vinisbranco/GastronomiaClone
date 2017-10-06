@@ -25,13 +25,13 @@ public class IngredienteAtributo implements Serializable {
 
     @Id
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    @JoinColumn(name = "IdIngrediente", nullable = false)
+    @JoinColumn(name = "IdIngrediente")
     @JsonBackReference
     private Ingrediente ingrediente;
 
     @Id
     @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    @JoinColumn(name = "IdAtributo", nullable = false)
+    @JoinColumn(name = "IdAtributo")
     private Atributo atributo;
 
     @Column(name = "Valor")

@@ -26,7 +26,7 @@ public class Ingrediente implements Serializable {
 	private static final long serialVersionUID = -789863172532826108L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "IdIngrediente")
 	private long id;
 
@@ -34,7 +34,7 @@ public class Ingrediente implements Serializable {
 	private String nome;
 
 	@OneToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "IdIngrediente", nullable = false)
+	@JoinColumn(name = "IdUsuario", nullable = false)
 	private Usuario criador;
 
 	@Column(name = "Origem")
