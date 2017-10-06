@@ -3,6 +3,7 @@ package br.com.gastronomia.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -24,13 +25,13 @@ public class IngredienteAtributo implements Serializable {
     private static final long serialVersionUID = -78917652532826108L;
 
     @Id
-    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "IdIngrediente")
     @JsonBackReference
     private Ingrediente ingrediente;
 
     @Id
-    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "IdAtributo")
     private Atributo atributo;
 

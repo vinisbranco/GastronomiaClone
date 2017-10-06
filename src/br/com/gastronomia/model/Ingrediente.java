@@ -41,7 +41,12 @@ public class Ingrediente implements Serializable {
 	private String origem;
 
     //Relacionamento implementado -- lado forte
-    @OneToMany(mappedBy = "ingrediente", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(
+    		mappedBy = "ingrediente",
+			fetch = FetchType.EAGER,
+			cascade = {
+					CascadeType.ALL
+			})
     @JsonManagedReference
 	private Set<IngredienteAtributo> ingredienteAtributo = new HashSet<>();
 
