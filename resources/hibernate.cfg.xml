@@ -9,9 +9,11 @@
 		<property name="hibernate.show_sql">true</property>
 		<property name="hibernate.format_sql">true</property>
 		<property name="hbm2ddl.auto">update</property> 
-		<mapping class="br.com.gastronomia.model.User" />
+		<mapping class="br.com.gastronomia.model.Usuario" />
 		<mapping class="br.com.gastronomia.model.Ingrediente" />
 		<mapping class="br.com.gastronomia.model.GrupoReceitas" />
 		<mapping class="br.com.gastronomia.model.Atributo" />
+        <mapping class="br.com.gastronomia.model.IngredienteAtributo" />
+        <mapping class="br.com.gastronomia.model.IngredienteAtributoId" />
 	</session-factory>
 </hibernate-configuration>

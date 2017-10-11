@@ -26,7 +26,7 @@ public class AtributoBO {
 
 	public boolean createAtributo(Atributo atributo) throws ValidationException, NoSuchAlgorithmException {
 		if (atributo != null) {
-			atributo.setStatus("ativo");
+			atributo.setStatus(true);
 			atributoDAO.save(atributo);
 			return true;
 		}
@@ -35,11 +35,11 @@ public class AtributoBO {
 	}
 
 	public long inactiveAtributo(long id) {
-		return atributoDAO.alterStatus(id, "inativo");
+		return atributoDAO.alterStatus(id, false);
 	}
 
 	public long activateUser(long id) {
-		return atributoDAO.alterStatus(id, "ativo");
+		return atributoDAO.alterStatus(id, true);
 	}
 
 	public long updateAtributo(Atributo atributo) throws ValidationException {
@@ -50,7 +50,7 @@ public class AtributoBO {
 
 	}
 	
-	//Mantive este método, mas não vejo qual a utilidade dele
+	//Mantive este mï¿½todo, mas nï¿½o vejo qual a utilidade dele
 	public Atributo validate(Atributo newAtributo) {
 		return newAtributo;
 	}

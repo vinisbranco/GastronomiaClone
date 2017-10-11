@@ -1,9 +1,14 @@
 package br.com.gastronomia.model;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Classe modelo para o acesso ao banco de dados.
@@ -15,35 +20,49 @@ import java.io.Serializable;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name= "Ingrediente")
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Ingrediente implements Serializable {
 
 	private static final long serialVersionUID = -789863172532826108L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "IdIngrediente")
-	private long cod_ingrediente;
+	private long id;
 
-	@Column(name = "Nome", unique = true)
+	@Column(name = "Nome")
 	private String nome;
 
-	@Column(name= "Status")
-	private String status;
+	@OneToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "IdUsuario", nullable = false)
+	private Usuario criador;
 
-	@Column(name ="Custo")
-	private Float custo;
+	@Column(name = "Origem")
+	private String origem;
+
+    //Relacionamento implementado -- lado forte
+    @OneToMany(
+    		mappedBy = "ingrediente",
+			fetch = FetchType.EAGER,
+			cascade = {
+					CascadeType.ALL
+			})
+    @JsonManagedReference
+	private Set<IngredienteAtributo> ingredienteAtributo = new HashSet<>();
+
+	@Column(name= "Status")
+	private boolean status;
 
 	public Ingrediente() {
 
 	}
 
-	public long getCod_ingrediente() {
-		return cod_ingrediente;
+	public long getId() {
+		return id;
 	}
 
-	public void setCod_ingrediente(long cod_ingrediente) {
-		this.cod_ingrediente = cod_ingrediente;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -54,20 +73,45 @@ public class Ingrediente implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getStatus() {
+	public Usuario getCriador() { return criador; }
+
+	public void setCriador(Usuario criador) {
+		this.criador = criador;
+	}
+
+	public String getOrigem() {
+		return origem;
+	}
+
+	public void setOrigem(String origem) {
+		this.origem = origem;
+	}
+
+	public Set<IngredienteAtributo> getIngredienteAtributo() {
+		return ingredienteAtributo;
+	}
+
+	public void setIngredienteAtributo(Set<IngredienteAtributo> ingredienteAtributo) {
+		this.ingredienteAtributo = ingredienteAtributo;
+	}
+
+	public boolean getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(boolean status) {
 		this.status = status;
 	}
 
-	@Override
-	public String toString() {
-		return "Ingrediente{" +
-				"cod_ingrediente=" + cod_ingrediente +
-				", nome='" + nome + '\'' +
-				", status='" + status + '\'' +
-				'}';
-	}
+    @Override
+    public String toString() {
+        return "Ingrediente{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", criador=" + criador +
+                ", origem='" + origem + '\'' +
+                ", ingredienteAtributo=" + ingredienteAtributo +
+                ", status=" + status +
+                '}';
+    }
 }

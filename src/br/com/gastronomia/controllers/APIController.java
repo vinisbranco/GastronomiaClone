@@ -1,6 +1,6 @@
 package br.com.gastronomia.controllers;
 
-import br.com.gastronomia.model.User;
+import br.com.gastronomia.model.Usuario;
 import br.com.gastronomia.util.Util;
 
 import javax.ws.rs.GET;
@@ -16,9 +16,9 @@ public class APIController {
 	@Produces("application/json; charset=UTF-8")
 	public Response index() {
 		
-		User user =new User();
-		user.setName("Luis Santana");
-		return Response.ok().entity(user).build();
+		Usuario usuario =new Usuario();
+		usuario.setNome("Luis Santana");
+		return Response.ok().entity(usuario).build();
 	}
 
 	@GET

@@ -17,6 +17,7 @@ import javax.ws.rs.core.Response;
 
 import br.com.gastronomia.bo.AtributoBO;
 import br.com.gastronomia.dao.AtributoDAO;
+import br.com.gastronomia.dto.StandardResponseDTO;
 import br.com.gastronomia.exception.PersistenciaException;
 import br.com.gastronomia.exception.ValidationException;
 import br.com.gastronomia.model.Atributo;
@@ -55,14 +56,12 @@ public class AtributoController {
 	public Response create(Atributo atributo) throws PersistenciaException, ValidationException {
 
 		try {
-
 			atributoBO.createAtributo(atributo);
-
 		} catch (Exception e) {
 			return Response.ok().status(Response.Status.BAD_REQUEST).build();
 		}
 
-		return Response.ok().status(Response.Status.ACCEPTED).build();
+		return Response.ok().entity(new StandardResponseDTO(true, "Atributo "+atributo.getNome()+", criado com sucesso!")).status(Response.Status.ACCEPTED).build();
 	}
 
 	@DELETE
@@ -78,7 +77,7 @@ public class AtributoController {
 
 			return Response.ok().status(Response.Status.BAD_REQUEST).build();
 		}
-		return Response.ok().status(Response.Status.ACCEPTED).build();
+		return Response.ok().entity(new StandardResponseDTO(true, "Atributo deletado com sucesso!")).status(Response.Status.ACCEPTED).build();
 
 	}
 	@GET
@@ -88,9 +87,7 @@ public class AtributoController {
 	public Response searchByID(@PathParam("id") Long id) throws PersistenciaException, ValidationException {
 
 		try {
-			
 			return Response.ok().entity(atributoBO.getAtributoById(id)).status(Response.Status.ACCEPTED).build();
-
 		} catch (Exception e) {
 
 			return Response.ok().status(Response.Status.BAD_REQUEST).build();
@@ -112,7 +109,7 @@ public class AtributoController {
 			e.printStackTrace();
 			return Response.ok().status(Response.Status.BAD_REQUEST).build();
 		}
-		return Response.ok().status(Response.Status.ACCEPTED).build();
+		return Response.ok().entity(new StandardResponseDTO(true, "Atributo: "+atributo.getNome()+" editado com sucesso!")).status(Response.Status.ACCEPTED).build();
 
 	}
 }

@@ -20,11 +20,11 @@ public class IngredienteDAO extends GenericHibernateDAO<Ingrediente> {
 	}
 
 	public Ingrediente findIngredienteByName(String nome) {
-		return (Ingrediente) findSingleObject("nome", Ingrediente.class, nome);
+		return (Ingrediente) findSingleObject("Nome", Ingrediente.class, nome);
 	}
 
 	public Ingrediente findIngredienteById(long id) {
-		return (Ingrediente) findId(id, Ingrediente.class);
+		return (Ingrediente) findSingleObject("id", Ingrediente.class, id);
 	}
 
 	public long updateIngrediente(Ingrediente ingrediente) {
@@ -33,8 +33,7 @@ public class IngredienteDAO extends GenericHibernateDAO<Ingrediente> {
 
 	public long alterStatus(long id, boolean statusBool) {
 		Ingrediente ingrediente = findIngredienteById(id);
-		String status = (statusBool) ? "Ativo" : "Inativo";
-		ingrediente.setStatus(status);
+		ingrediente.setStatus(statusBool);
 		return merge(ingrediente);
 	}
 }

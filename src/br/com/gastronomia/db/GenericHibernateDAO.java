@@ -78,8 +78,8 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 		
 		try {
 			tx = session.beginTransaction();
-			tx.commit();
-			return (T) session.find(c,id);
+			T t = (T) session.find(c,id);
+			return t;
 			
 		} catch (HibernateException e) {
 			if (tx != null)
@@ -109,7 +109,7 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 	@Override
 	public String findMultipleResultString(String parameter, Object T, String valueParameter, String field) {
 		Session session = HibernateUtil.getFactory();
-		// Select T.password from FROM User T WHERE T.cpf = 10
+		// Select T.password from FROM Usuario T WHERE T.cpf = 10
 		String sql = "Select T." + field + " FROM " + T.getClass().getSimpleName() + " T  where T." + parameter + " ="
 				+ valueParameter;
 		String results = session.createQuery(sql).list().toString();
@@ -118,11 +118,11 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 	}
 
 	@Override
-	public Object findSingleObject(String parameter, Class<?> T, String valueParameter) {
+	public Object findSingleObject(String parameter, Class<?> T, Object valueParameter) {
 		Session session = HibernateUtil.getFactory();
 		
-		String hql = "Select T FROM " + T.getSimpleName() + " T  where T." + parameter + " = ?";
-		return session.createQuery(hql).setString(0, valueParameter).getSingleResult();
+		String hql = "Select T FROM " + T.getSimpleName() + " T  where T." + parameter + " = :" +parameter ;
+		return session.createQuery(hql).setParameter(parameter, valueParameter).getSingleResult();
 
 		
 	}

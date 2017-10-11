@@ -17,11 +17,11 @@ public class GrupoReceitasDAO extends GenericHibernateDAO<GrupoReceitas> {
 	}
 
 	public GrupoReceitas findGroupByCod(long codGrupos) {
-		return (GrupoReceitas) findSingleObject("codGrupos", GrupoReceitas.class, String.valueOf(codGrupos));
+		return (GrupoReceitas) findSingleObject("IdGrupo", GrupoReceitas.class, String.valueOf(codGrupos));
 	}
 
 	public GrupoReceitas findGroupByName(String nome) {
-		return (GrupoReceitas) findSingleObject("nome", GrupoReceitas.class, nome);
+		return (GrupoReceitas) findSingleObject("Nome", GrupoReceitas.class, nome);
 	}
 
 	public long removeGroup(GrupoReceitas grupo) {
@@ -36,7 +36,7 @@ public class GrupoReceitasDAO extends GenericHibernateDAO<GrupoReceitas> {
 		return merge(grupoReceitas);
 	}
 
-	public long alterStatus(long id, String status) {
+	public long alterStatus(long id, boolean status) {
 		GrupoReceitas grupoReceitas = findGroupByID(id);
 		grupoReceitas.setStatus(status);
 		return merge(grupoReceitas);

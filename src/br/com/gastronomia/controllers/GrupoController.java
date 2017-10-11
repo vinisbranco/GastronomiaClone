@@ -16,13 +16,11 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 
 import br.com.gastronomia.bo.GrupoReceitasBO;
-import br.com.gastronomia.bo.UserBO;
 import br.com.gastronomia.dao.GrupoReceitasDAO;
-import br.com.gastronomia.dao.UserDAO;
+import br.com.gastronomia.dto.StandardResponseDTO;
 import br.com.gastronomia.exception.PersistenciaException;
 import br.com.gastronomia.exception.ValidationException;
 import br.com.gastronomia.model.GrupoReceitas;
-import br.com.gastronomia.model.User;
 import br.com.gastronomia.util.EncryptUtil;
 
 @Path("grupos")
@@ -65,7 +63,7 @@ public class GrupoController {
 			return Response.ok().status(Response.Status.BAD_REQUEST).build();
 		}
 
-		return Response.ok().status(Response.Status.ACCEPTED).build();
+		return Response.ok().entity(new StandardResponseDTO(true, "Grupo de Receita "+grupoReceitas.getNome()+ " criado com sucesso!")).status(Response.Status.ACCEPTED).build();
 	}
 
 	@DELETE
@@ -81,18 +79,18 @@ public class GrupoController {
 
 			return Response.ok().status(Response.Status.BAD_REQUEST).build();
 		}
-		return Response.ok().status(Response.Status.ACCEPTED).build();
+		return Response.ok().entity(new StandardResponseDTO(true, "Grupo de Receita deletado com sucesso!")).status(Response.Status.ACCEPTED).build();
 
 	}
 	@GET
 	@Path("/{id}")
 	@Produces("application/json; charset=UTF-8")
 	//@JWTTokenNeeded
-	public Response searchByID(@PathParam("id") GrupoReceitas grupo) throws PersistenciaException, ValidationException {
+	public Response searchByID(@PathParam("id") Long id) throws PersistenciaException, ValidationException {
 
 		try {
 			
-			return Response.ok().entity(grupoReceitasBO.getGroupByCod(grupo)).status(Response.Status.ACCEPTED).build();
+			return Response.ok().entity(grupoReceitasBO.getGroupByCod(id)).status(Response.Status.ACCEPTED).build();
 
 		} catch (Exception e) {
 
@@ -115,7 +113,7 @@ public class GrupoController {
 			e.printStackTrace();
 			return Response.ok().status(Response.Status.BAD_REQUEST).build();
 		}
-		return Response.ok().status(Response.Status.ACCEPTED).build();
+		return Response.ok().entity(new StandardResponseDTO(true, "Grupo de Receita "+ grupo.getNome()+ " editado com sucesso!")).status(Response.Status.ACCEPTED).build();
 
 	}
 }

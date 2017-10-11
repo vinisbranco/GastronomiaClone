@@ -19,18 +19,15 @@ import org.apache.log4j.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import br.com.gastronomia.bo.UserBO;
-import br.com.gastronomia.dao.UserDAO;
+import br.com.gastronomia.bo.UsuarioBO;
+import br.com.gastronomia.dao.UsuarioDAO;
 import br.com.gastronomia.dto.StandardResponseDTO;
-import br.com.gastronomia.dto.UserFormattedDTO;
+import br.com.gastronomia.dto.UsuarioFormattedDTO;
 import br.com.gastronomia.model.Token;
-import br.com.gastronomia.model.User;
+import br.com.gastronomia.model.Usuario;
 import br.com.gastronomia.util.EncryptUtil;
 import br.com.gastronomia.util.TokenGenerator;
-import static javax.ws.rs.core.HttpHeaders.AUTHORIZATION;
-import static javax.ws.rs.core.MediaType.APPLICATION_FORM_URLENCODED;
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
-import static javax.ws.rs.core.Response.Status.NOT_FOUND;
+
 import static javax.ws.rs.core.Response.Status.UNAUTHORIZED;
 
 
@@ -38,8 +35,8 @@ import static javax.ws.rs.core.Response.Status.UNAUTHORIZED;
 public class AuthController {
 	Logger logger = Logger.getLogger("controller.AuthController");
 
-	private UserBO userBO = new UserBO();
-	private UserDAO userDAO = new UserDAO();
+	private UsuarioBO usuarioBO = new UsuarioBO();
+	private UsuarioDAO usuarioDAO = new UsuarioDAO();
 
 	private EncryptUtil encryptUtil = new EncryptUtil();
 	@Context
@@ -52,14 +49,14 @@ public class AuthController {
 	@Path("/login")
 	@Consumes("application/json; charset=UTF-8")
 	@Produces("application/json; charset=UTF-8")
-	public Response login(User userLogin) throws IOException {
-		User user;
+	public Response login(Usuario usuarioLogin) throws IOException {
+		Usuario usuario;
 		HashMap<String, Object> responsed = new HashMap<>();
 		Token token=new Token();
 		try {
 			ObjectMapper mapper = new ObjectMapper();
-			user = userBO.userExists(userLogin);
-			token.setToken(TokenGenerator.issueToken(mapper.writeValueAsString(user)));
+			usuario = usuarioBO.userExists(usuarioLogin);
+			token.setToken(TokenGenerator.issueToken(mapper.writeValueAsString(usuario)));
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Response.status(UNAUTHORIZED).build();
@@ -90,20 +87,20 @@ public class AuthController {
 	@GET
 	@Path("/me")
 	@Produces("application/json; charset=UTF-8")
-	public UserFormattedDTO getMe() throws IOException {
+	public UsuarioFormattedDTO getMe() throws IOException {
 
 		logger.debug("Session ME: " + new Date() + " - " + request.getSession().hashCode());
 
 		System.out.println(request.getSession().getAttributeNames().toString());
-		request.getSession().getAttribute("user");
-		User user = (User) request.getSession().getAttribute("user");
+		request.getSession().getAttribute("usuario");
+		Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
 
-		if (user != null) {
-			logger.debug("User inserido na session: " + new Date() + " - " + user.toString());
-			return UserFormattedDTO.getFromUser(user);
+		if (usuario != null) {
+			logger.debug("Usuario inserido na session: " + new Date() + " - " + usuario.toString());
+			return UsuarioFormattedDTO.getFromUser(usuario);
 		}
 
-		logger.debug("User não existe na session");
+		logger.debug("Usuario não existe na session");
 		response.setStatus(Response.Status.BAD_REQUEST.getStatusCode());
 		response.flushBuffer();
 		return null;
@@ -113,15 +110,15 @@ public class AuthController {
 	@Path("/recoverPasswordRequest")
 	@Consumes("application/json; charset=UTF-8")
 	@Produces("application/json; charset=UTF-8")
-	public StandardResponseDTO recoverPasswordRequest(User userLogin) throws IOException {
+	public StandardResponseDTO recoverPasswordRequest(Usuario usuarioLogin) throws IOException {
 
-		User user;
+		Usuario usuario;
 		StandardResponseDTO responseJson = new StandardResponseDTO();
 
 		try {
-			user = userBO.getUserByCpf(userLogin);
+			usuario = usuarioBO.getUserByCpf(usuarioLogin);
 
-			if (user.isActive() == false) {
+			if (usuario.isStatus() == false) {
 				responseJson.setMessage("inativo");
 				responseJson.setSuccess(false);
 				return responseJson;
@@ -131,11 +128,11 @@ public class AuthController {
 			String reqURI = request.getRequestURI();
 			String baseURL = request.getRequestURL().substring(0, reqURL.length() - reqURI.length()) + "/";
 
-			// passwordChangeBO.createPasswordChangeRequest(user, baseURL);
+			// passwordChangeBO.createPasswordChangeRequest(usuario, baseURL);
 
 			responseJson.setSuccess(true);
 			responseJson.setMessage(
-					 user.getEmail());
+					 usuario.getEmail());
 		} catch (Exception e) {
 			response.setStatus(Response.Status.BAD_REQUEST.getStatusCode());
 			response.flushBuffer();

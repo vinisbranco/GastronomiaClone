@@ -1,7 +1,7 @@
 package br.com.gastronomia.testsDAO;
 
-import br.com.gastronomia.dao.UserDAO;
-import br.com.gastronomia.model.User;
+import br.com.gastronomia.dao.UsuarioDAO;
+import br.com.gastronomia.model.Usuario;
 
 /**
  * 
@@ -11,11 +11,11 @@ import br.com.gastronomia.model.User;
 public class TestUserDAO {
 	public static void main(String[] args) {
 		
-		User user = new User();
-		user.setCpf("99000090909");
+		Usuario usuario = new Usuario();
+		usuario.setCpf("99000090909");
 		
-		UserDAO userDAO = new UserDAO();
+		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		
-		System.out.println(userDAO.save(user));
+		System.out.println(usuarioDAO.save(usuario));
 	}
 }

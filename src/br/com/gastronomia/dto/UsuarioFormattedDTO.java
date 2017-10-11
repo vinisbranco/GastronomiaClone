@@ -1,15 +1,14 @@
 package br.com.gastronomia.dto;
 
+import br.com.gastronomia.model.Usuario;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-
-import br.com.gastronomia.model.User;
 
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown=true)
-public class UserFormattedDTO implements Serializable {
+public class UsuarioFormattedDTO implements Serializable {
 	private static final long serialVersionUID = -789863172532826108L;
 	private String cpf;
 	private String email;
@@ -18,7 +17,7 @@ public class UserFormattedDTO implements Serializable {
 	private String role;
 	private boolean active;
 
-	public UserFormattedDTO() {}
+	public UsuarioFormattedDTO() {}
 
 	public String getCpf() {
 		return cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9, 11);
@@ -72,22 +71,22 @@ public class UserFormattedDTO implements Serializable {
 		return (this.cpf != null);
 	}
 
-	public static UserFormattedDTO getFromUser(User user) {
-		UserFormattedDTO dto = new UserFormattedDTO();
+	public static UsuarioFormattedDTO getFromUser(Usuario usuario) {
+		UsuarioFormattedDTO dto = new UsuarioFormattedDTO();
 
-		dto.setCpf(user.getCpf());
-		dto.setEmail(user.getEmail());
-		dto.setName(user.getName());
-		dto.setRole(user.getRole());
-		dto.setActive(user.isActive());
+		dto.setCpf(usuario.getCpf());
+		dto.setEmail(usuario.getEmail());
+		dto.setName(usuario.getNome());
+		dto.setRole(usuario.getTipo());
+		dto.setActive(usuario.isStatus());
 
 		return dto;
 	}
 
-	public static List<UserFormattedDTO> getFromUser(List<User> user) {
-		List<UserFormattedDTO> list = new LinkedList<>();
+	public static List<UsuarioFormattedDTO> getFromUser(List<Usuario> usuario) {
+		List<UsuarioFormattedDTO> list = new LinkedList<>();
 
-		for (User u : user)
+		for (Usuario u : usuario)
 			list.add(getFromUser(u));
 
 		return list;

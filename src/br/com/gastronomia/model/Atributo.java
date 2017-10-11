@@ -1,21 +1,8 @@
 package br.com.gastronomia.model;
 
 import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.Table;
-import javax.persistence.Id;
-
-import javax.validation.constraints.Email;
-
-
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-
+import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 /**
  * Classe modelo para Atributo.
  * 
@@ -27,7 +14,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name= "Atributo")
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Atributo implements Serializable {
 
 	private static final long serialVersionUID = -789863172532826108L;
@@ -45,9 +32,12 @@ public class Atributo implements Serializable {
 	
 	@Column(name = "Multiplicador")
 	private long multiplicador;
-	
+
+	@Column(name= "Obrigatorio")
+	private boolean obrigatorio;
+
 	@Column(name= "Status")
-	private String status;
+	private boolean status;
 
 	/**
 	 * Construtor vazio.
@@ -74,26 +64,31 @@ public class Atributo implements Serializable {
 	public String getUnidade() {
 		return unidade;
 	}
-	
-	public String getStatus() {
+
+	public boolean getObrigatorio() {
+		return obrigatorio;
+	}
+
+	public boolean getStatus() {
 		return status;
 	}
-	
-	public long getMultiplicador() {
-		return multiplicador;
-	}
+
+    public long getMultiplicador() {
+        return multiplicador;
+    }
 
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	public void setMultiplicador(long multiplicador) {
-		this.multiplicador = multiplicador;
+
+    public void setMultiplicador(long multiplicador) { this.multiplicador = multiplicador; }
+
+	public void setObrigatorio(boolean obrigatorio) {
+		this.obrigatorio = obrigatorio;
 	}
-	
-	public void setStatus(String status) {
-		if(status.equals("ativo") || status.equals("inativo"))
-			this.status = status;
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 
 	/**
@@ -101,13 +96,14 @@ public class Atributo implements Serializable {
 	 * 
 	 * @return String
 	 **/
-	public String isActive() {
+	public boolean isActive() {
 		return status;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Atributo " + nome + " ID: " + id + " unidade: " + unidade 
-				+ " multiplicador: " + multiplicador + " status:" + status;
+				+ " multiplicador: " + multiplicador + " obrigatório:"
+				+ obrigatorio + " status:" + status;
 	}
 }

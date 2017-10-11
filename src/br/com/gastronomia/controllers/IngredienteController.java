@@ -5,7 +5,7 @@ import br.com.gastronomia.dto.StandardResponseDTO;
 import br.com.gastronomia.exception.PersistenciaException;
 import br.com.gastronomia.exception.ValidationException;
 import br.com.gastronomia.model.Ingrediente;
-import br.com.gastronomia.model.User;
+import br.com.gastronomia.model.IngredienteAtributo;
 import br.com.gastronomia.util.EncryptUtil;
 
 import javax.servlet.http.HttpServletRequest;
@@ -45,6 +45,7 @@ public class IngredienteController {
 	public Response create(Ingrediente ingrediente) throws PersistenciaException, ValidationException {
 
 		try {
+			System.out.println(ingrediente);
 			ingredienteBO.createIngrediente(ingrediente);
 		} catch (Exception e) {
 			return Response.ok().status(Response.Status.BAD_REQUEST).build();
@@ -65,7 +66,7 @@ public class IngredienteController {
 
 			return Response.ok().status(Response.Status.BAD_REQUEST).build();
 		}
-		return Response.ok().entity(new StandardResponseDTO(true, "Descadastrado")).status(Response.Status.ACCEPTED).build();
+		return Response.ok().entity(new StandardResponseDTO(true, "Ingrediente deletado com sucesso!")).status(Response.Status.ACCEPTED).build();
 
 	}
 	@GET
@@ -94,7 +95,7 @@ public class IngredienteController {
 			e.printStackTrace();
 			return Response.ok().status(Response.Status.BAD_REQUEST).build();
 		}
-		return Response.ok().entity(new StandardResponseDTO(true, "Atualizado")).status(Response.Status.ACCEPTED).build();
+		return Response.ok().entity(new StandardResponseDTO(true, "Ingrediente "+ingrediente.getNome()+ " editado com sucesso!")).status(Response.Status.ACCEPTED).build();
 
 	}
 }

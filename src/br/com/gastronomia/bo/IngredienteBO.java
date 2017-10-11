@@ -3,9 +3,6 @@ package br.com.gastronomia.bo;
 import br.com.gastronomia.dao.IngredienteDAO;
 import br.com.gastronomia.exception.ValidationException;
 import br.com.gastronomia.model.Ingrediente;
-import br.com.gastronomia.model.User;
-import br.com.gastronomia.util.Constantes;
-import br.com.gastronomia.util.EncryptUtil;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;

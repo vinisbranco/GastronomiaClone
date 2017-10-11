@@ -26,7 +26,7 @@ public class GrupoReceitasBO {
 
 	public boolean createGroup(GrupoReceitas grupo) throws ValidationException, NoSuchAlgorithmException {
 		if (grupo != null) {
-			grupo.setStatus("ATIVO");
+			grupo.setStatus(true);
 			grupoReceitasDAO.save(grupo);
 			return true;
 		}
@@ -36,11 +36,11 @@ public class GrupoReceitasBO {
 	}
 
 	public long deactivateGroup(long id) {
-		return grupoReceitasDAO.alterStatus(id, "INATIVO");
+		return grupoReceitasDAO.alterStatus(id, false);
 	}
 
 	public long activateGroup(long id) {
-		return grupoReceitasDAO.alterStatus(id, "ATIVO");
+		return grupoReceitasDAO.alterStatus(id, true);
 	}
 
 	public long updateGroup(GrupoReceitas grupoReceitas) throws ValidationException {
@@ -63,9 +63,9 @@ public class GrupoReceitasBO {
 		return listGrupoReceitas;
 	}
 
-	public GrupoReceitas getGroupByCod(GrupoReceitas grupo) throws ValidationException {
-		if (grupo != null) {
-			return grupoReceitasDAO.findGroupByCod(grupo.getCodGrupos());
+	public GrupoReceitas getGroupByCod(long id) throws ValidationException {
+		if (id != 0) {
+			return grupoReceitasDAO.findGroupByID(id);
 		}
 		throw new ValidationException("invalido");
 
