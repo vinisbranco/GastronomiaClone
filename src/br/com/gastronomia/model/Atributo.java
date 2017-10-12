@@ -24,19 +24,19 @@ public class Atributo implements Serializable {
 	@Column(name = "IdAtributo")
 	private long id;
 	
-	@Column(name = "Nome")
+	@Column(name = "Nome", unique = true, nullable = false)
 	private String nome;
 	
-	@Column(name = "Unidade")
+	@Column(name = "Unidade", nullable = false)
 	private String unidade;
 	
-	@Column(name = "Multiplicador")
+	@Column(name = "Multiplicador", nullable = false)
 	private long multiplicador;
 
-	@Column(name= "Obrigatorio")
+	@Column(name= "Obrigatorio", nullable = false)
 	private boolean obrigatorio;
 
-	@Column(name= "Status")
+	@Column(name= "Status", nullable = false)
 	private boolean status;
 
 	/**
