@@ -37,28 +37,28 @@ public class Usuario implements Serializable {
 	@Column(name = "IdUsuario")
 	private long id;
 	
-	@Column(name = "Cpf", unique = true)
+	@Column(name = "Cpf", unique = true, nullable = false)
 	private String cpf;
 	
 	@Email(message="E-mail invalido")
-	@Column(name = "Email", unique = true)
+	@Column(name = "Email", unique = true, nullable = false)
 	private String email;
 	
-	@Column(name = "Matricula", unique = true)
+	@Column(name = "Matricula", unique = true, nullable = false)
 	private String matricula;
 	
-	@Column(name= "Nome")
+	@Column(name= "Nome", nullable = false)
 	private String nome;
 	
-	@Column(name= "Senha")
+	@Column(name= "Senha", nullable = false)
 	private String senha;
 	
 	
-	@Column(name= "Tipo")
+	@Column(name= "Tipo", nullable = false)
 	private String tipo;
 	
 	
-	@Column(name= "Status")
+	@Column(name= "Status", nullable = false)
 	private boolean status;
 
 	/**
