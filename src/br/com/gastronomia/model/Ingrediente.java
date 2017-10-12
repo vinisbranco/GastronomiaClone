@@ -30,15 +30,18 @@ public class Ingrediente implements Serializable {
 	@Column(name = "IdIngrediente")
 	private long id;
 
-	@Column(name = "Nome")
+	@Column(name = "Nome", unique = true, nullable = false)
 	private String nome;
 
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "IdUsuario", nullable = false)
 	private Usuario criador;
 
-	@Column(name = "Origem")
+	@Column(name = "Origem", nullable = false)
 	private String origem;
+
+	@Column(name= "Status", nullable = false)
+	private boolean status;
 
     //Relacionamento implementado -- lado forte
     @OneToMany(
@@ -49,9 +52,6 @@ public class Ingrediente implements Serializable {
 			})
     @JsonManagedReference
 	private Set<IngredienteAtributo> ingredienteAtributo = new HashSet<>();
-
-	@Column(name= "Status")
-	private boolean status;
 
 	public Ingrediente() {
 
