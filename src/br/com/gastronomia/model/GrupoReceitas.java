@@ -35,13 +35,13 @@ public class GrupoReceitas implements Serializable {
 	@Column(name = "IdGrupo")
 	private long id;
 
-	@Column(name = "Nome")
+	@Column(name = "Nome", unique = true, nullable = false)
 	private String nome;
 
 	@Column(name = "CustoPorcao")
 	private double custo;
 
-	@Column(name = "Status")
+	@Column(name = "Status", nullable = false)
 	private boolean status;
 
 	/**
