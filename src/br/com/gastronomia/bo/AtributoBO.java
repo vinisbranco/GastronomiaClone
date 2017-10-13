@@ -34,11 +34,11 @@ public class AtributoBO {
 
 	}
 
-	public long inactiveAtributo(long id) {
+	public long inactiveAtributo(long id) throws ValidationException {
 		return atributoDAO.alterStatus(id, false);
 	}
 
-	public long activateUser(long id) {
+	public long activateUser(long id) throws ValidationException {
 		return atributoDAO.alterStatus(id, true);
 	}
 

@@ -2,6 +2,7 @@ package br.com.gastronomia.dao;
 
 import java.util.List;
 
+import br.com.gastronomia.exception.ValidationException;
 import br.com.gastronomia.model.Usuario;
 import org.hibernate.Session;
 
@@ -28,19 +29,19 @@ public class UsuarioDAO extends GenericHibernateDAO<Usuario> {
 	}
 
 
-	public long removeUser(Usuario usuario) {
+	public long removeUser(Usuario usuario) throws ValidationException {
 		return remove(usuario);
 	}
 
-	public Usuario findUserByID(long id) {
+	public Usuario findUserByID(long id) throws ValidationException  {
 		return (Usuario) findId(id, Usuario.class);
 	}
 
-	public long updateUser(Usuario usuario) {
+	public long updateUser(Usuario usuario) throws ValidationException  {
 		return merge(usuario);
 	}
 
-	public long alterStatus(long id, boolean status) {
+	public long alterStatus(long id, boolean status) throws ValidationException  {
 		Usuario usuario = findUserByID(id);
 		usuario.setStatus(status);
 		return merge(usuario);

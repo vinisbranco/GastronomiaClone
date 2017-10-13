@@ -1,5 +1,6 @@
 package br.com.gastronomia.db;
 
+import br.com.gastronomia.exception.ValidationException;
 import br.com.gastronomia.imp.GenericDAO;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -12,7 +13,7 @@ import java.util.List;
 public class GenericHibernateDAO<T> implements GenericDAO<T> {
 
 	@Override
-	public long save(T obj) {
+	public long save(T obj) throws ValidationException {
 		try {
 			Session session = HibernateUtil.getFactory();
 			Transaction tx = null;
@@ -26,6 +27,7 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 					tx.rollback();
 				e.printStackTrace();
 				System.out.println("Erro de HibernateException ao salvar no GenericHibernateDAO: " + e.getMessage());
+                throw new ValidationException("invalido");
 			} finally {
 				session.close();
 			}
@@ -34,12 +36,12 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Erro de Exception no salvar do GenericHibernateDAO: " + e.getMessage());
+            throw new ValidationException("invalido");
 		}
-		return 0;
-	}
+    }
 
 	@Override
-	public long remove(T obj) {
+	public long remove(T obj) throws ValidationException {
 		Session session = HibernateUtil.getFactory();
 		Transaction tx = null;
 		long sucess = 0;
@@ -53,8 +55,8 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 				tx.rollback();
 			e.printStackTrace();
 			System.out.println("Erro de HibernateException ao excluir no GenericHibernateDAO: " + e.getMessage());
-			return sucess;
-		} finally {
+            throw new ValidationException("invalido");
+        } finally {
 			session.close();
 		}
 	}
@@ -71,7 +73,7 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 	}
 
 	@Override
-	public T findId(long id,Class<?> c) {
+	public T findId(long id,Class<?> c) throws ValidationException {
 
 		Session session = HibernateUtil.getFactory();
 		Transaction tx = null;
@@ -86,13 +88,12 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 				tx.rollback();
 			e.printStackTrace();
 			System.out.println("Erro de HibernateException ao excluir no GenericHibernateDAO: " + e.getMessage());
-		
+            throw new ValidationException("invalido");
 		} finally {
 			session.close();
 		}
-		return null;
 
-	}
+    }
 	@SuppressWarnings("deprecation")
 	@Override
 	public String findSingleResultString(String parameter, Object T, String valueParameter, String field) {
@@ -128,7 +129,7 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 	}
 
 	@Override
-	public long merge(Object T) {
+	public long merge(Object T) throws ValidationException {
 		Session session = HibernateUtil.getFactory();
 		Transaction tx = null;
 		long id = 0;
@@ -142,6 +143,7 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 			if (tx != null)
 				tx.rollback();
 			e.printStackTrace();
+            throw new ValidationException("invalido");
 		} finally {
 			session.close();
 		}

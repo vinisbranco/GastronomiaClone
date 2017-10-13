@@ -2,6 +2,7 @@ package br.com.gastronomia.dao;
 
 import java.util.List;
 
+import br.com.gastronomia.exception.ValidationException;
 import org.hibernate.Session;
 
 import br.com.gastronomia.db.GenericHibernateDAO;
@@ -17,19 +18,19 @@ public class AtributoDAO extends GenericHibernateDAO<Atributo> {
 		return atributos;
 	}
 
-	public long removeAtributo(Atributo atributo) {
+	public long removeAtributo(Atributo atributo) throws ValidationException {
 		return remove(atributo);
 	}
 
-	public Atributo findAtributoByID(long id) {
+	public Atributo findAtributoByID(long id) throws ValidationException {
 		return (Atributo) findId(id, Atributo.class);
 	}
 
-	public long updateAtributo(Atributo atributo) {
+	public long updateAtributo(Atributo atributo) throws ValidationException {
 		return merge(atributo);
 	}
 
-	public long alterStatus(long id, boolean status) {
+	public long alterStatus(long id, boolean status) throws ValidationException {
 		Atributo atributo = findAtributoByID(id);
 		atributo.setStatus(status);
 		return merge(atributo);

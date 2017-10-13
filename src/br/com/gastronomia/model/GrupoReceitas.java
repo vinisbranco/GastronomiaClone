@@ -12,6 +12,8 @@ import javax.persistence.Table;
 import javax.persistence.Id;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
@@ -35,13 +37,16 @@ public class GrupoReceitas implements Serializable {
 	@Column(name = "IdGrupo")
 	private long id;
 
-	@Column(name = "Nome")
+	@NotEmpty
+	@Column(name = "Nome", unique = true)
 	private String nome;
 
+	@Min(1)
 	@Column(name = "CustoPorcao")
 	private double custo;
 
-	@Column(name = "Status")
+	
+	@Column(name = "Status", nullable = false)
 	private boolean status;
 
 	/**

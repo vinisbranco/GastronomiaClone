@@ -2,7 +2,14 @@ package br.com.gastronomia.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Check;
+
 /**
  * Classe modelo para Atributo.
  * 
@@ -23,20 +30,23 @@ public class Atributo implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "IdAtributo")
 	private long id;
-	
-	@Column(name = "Nome")
+
+	@NotEmpty
+	@Column(name = "Nome", unique = true)
 	private String nome;
-	
+
+	@NotEmpty
 	@Column(name = "Unidade")
 	private String unidade;
-	
+
+	@Min(1)
 	@Column(name = "Multiplicador")
 	private long multiplicador;
 
-	@Column(name= "Obrigatorio")
+	@Column(name= "Obrigatorio", nullable = false)
 	private boolean obrigatorio;
 
-	@Column(name= "Status")
+	@Column(name= "Status", nullable = false)
 	private boolean status;
 
 	/**

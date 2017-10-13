@@ -35,11 +35,11 @@ public class GrupoReceitasBO {
 
 	}
 
-	public long deactivateGroup(long id) {
+	public long deactivateGroup(long id) throws ValidationException  {
 		return grupoReceitasDAO.alterStatus(id, false);
 	}
 
-	public long activateGroup(long id) {
+	public long activateGroup(long id) throws ValidationException  {
 		return grupoReceitasDAO.alterStatus(id, true);
 	}
 
