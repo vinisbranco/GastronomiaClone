@@ -128,12 +128,16 @@
 			<version>2.26-b08</version>
 		</dependency>
 <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.media/jersey-media-json-jackson -->
-<dependency>
-    <groupId>org.glassfish.jersey.media</groupId>
-    <artifactId>jersey-media-json-jackson</artifactId>
-    <version>2.26-b09</version>
-</dependency>
-
+		<dependency>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-json-jackson</artifactId>
+			<version>2.26-b09</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>6.0.2.Final</version>
+		</dependency>
 	</dependencies>
 	<artifactId>gastronomiaApi</artifactId>
 </project>
