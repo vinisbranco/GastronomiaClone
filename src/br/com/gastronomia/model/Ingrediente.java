@@ -5,9 +5,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -30,14 +30,16 @@ public class Ingrediente implements Serializable {
 	@Column(name = "IdIngrediente")
 	private long id;
 
-	@Column(name = "Nome", unique = true, nullable = false)
+	@NotEmpty
+	@Column(name = "Nome", unique = true)
 	private String nome;
 
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "IdUsuario", nullable = false)
 	private Usuario criador;
 
-	@Column(name = "Origem", nullable = false)
+	@NotEmpty
+	@Column(name = "Origem")
 	private String origem;
 
 	@Column(name= "Status", nullable = false)
