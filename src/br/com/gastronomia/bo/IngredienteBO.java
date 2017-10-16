@@ -17,11 +17,11 @@ public class IngredienteBO {
 	}
 
 
-	public long inactiveIngrediente(long id) {
+	public long inactiveIngrediente(long id) throws ValidationException  {
 		return ingredienteDAO.alterStatus(id, false);
 	}
 
-	public long activateIngrediente(long id) {
+	public long activateIngrediente(long id) throws ValidationException  {
 		return ingredienteDAO.alterStatus(id, true);
 	}
 

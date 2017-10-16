@@ -12,6 +12,7 @@ import javax.persistence.Table;
 import javax.persistence.Id;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
@@ -36,29 +37,34 @@ public class Usuario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "IdUsuario")
 	private long id;
-	
+
+	@NotEmpty
 	@Column(name = "Cpf", unique = true)
 	private String cpf;
-	
+
+	@NotEmpty
 	@Email(message="E-mail invalido")
 	@Column(name = "Email", unique = true)
 	private String email;
-	
+
+	@NotEmpty
 	@Column(name = "Matricula", unique = true)
 	private String matricula;
-	
+
+	@NotEmpty
 	@Column(name= "Nome")
 	private String nome;
-	
+
+	@NotEmpty
 	@Column(name= "Senha")
 	private String senha;
-	
-	
-	@Column(name= "Tipo")
+
+    @NotEmpty
+    @Column(name= "Tipo")
 	private String tipo;
 	
 	
-	@Column(name= "Status")
+	@Column(name= "Status", nullable = false)
 	private boolean status;
 
 	/**

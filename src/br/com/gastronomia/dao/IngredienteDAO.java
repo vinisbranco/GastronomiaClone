@@ -2,6 +2,7 @@ package br.com.gastronomia.dao;
 
 import br.com.gastronomia.db.GenericHibernateDAO;
 import br.com.gastronomia.db.HibernateUtil;
+import br.com.gastronomia.exception.ValidationException;
 import br.com.gastronomia.model.Ingrediente;
 import org.hibernate.Session;
 
@@ -27,11 +28,11 @@ public class IngredienteDAO extends GenericHibernateDAO<Ingrediente> {
 		return (Ingrediente) findSingleObject("id", Ingrediente.class, id);
 	}
 
-	public long updateIngrediente(Ingrediente ingrediente) {
+	public long updateIngrediente(Ingrediente ingrediente) throws ValidationException {
 		return merge(ingrediente);
 	}
 
-	public long alterStatus(long id, boolean statusBool) {
+	public long alterStatus(long id, boolean statusBool) throws ValidationException {
 		Ingrediente ingrediente = findIngredienteById(id);
 		ingrediente.setStatus(statusBool);
 		return merge(ingrediente);

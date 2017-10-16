@@ -55,6 +55,7 @@
           <element id="library" level="project" name="Maven: org.glassfish.jersey.ext:jersey-entity-filtering:2.26-b09" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.8.4" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.8.4" />
+          <element id="library" level="project" name="Maven: org.hibernate.validator:hibernate-validator:6.0.2.Final" />
         </element>
       </element>
       <element id="directory" name="META-INF">

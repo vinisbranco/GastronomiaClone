@@ -44,11 +44,11 @@ public class UsuarioBO {
 
 	}
 
-	public long deactivateUser(long id) {
+	public long deactivateUser(long id) throws ValidationException  {
 		return usuarioDAO.alterStatus(id, false);
 	}
 
-	public long activateUser(long id) {
+	public long activateUser(long id) throws ValidationException  {
 		return usuarioDAO.alterStatus(id, true);
 	}
 

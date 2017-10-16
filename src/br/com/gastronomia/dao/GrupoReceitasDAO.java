@@ -2,6 +2,7 @@ package br.com.gastronomia.dao;
 
 import java.util.List;
 
+import br.com.gastronomia.exception.ValidationException;
 import org.hibernate.Session;
 
 import br.com.gastronomia.db.GenericHibernateDAO;
@@ -24,19 +25,19 @@ public class GrupoReceitasDAO extends GenericHibernateDAO<GrupoReceitas> {
 		return (GrupoReceitas) findSingleObject("Nome", GrupoReceitas.class, nome);
 	}
 
-	public long removeGroup(GrupoReceitas grupo) {
+	public long removeGroup(GrupoReceitas grupo) throws ValidationException {
 		return remove(grupo);
 	}
 
-	public GrupoReceitas findGroupByID(long id) {
+	public GrupoReceitas findGroupByID(long id) throws ValidationException {
 		return (GrupoReceitas) findId(id, GrupoReceitas.class);
 	}
 
-	public long updateGroup(GrupoReceitas grupoReceitas) {
+	public long updateGroup(GrupoReceitas grupoReceitas) throws ValidationException {
 		return merge(grupoReceitas);
 	}
 
-	public long alterStatus(long id, boolean status) {
+	public long alterStatus(long id, boolean status) throws ValidationException {
 		GrupoReceitas grupoReceitas = findGroupByID(id);
 		grupoReceitas.setStatus(status);
 		return merge(grupoReceitas);
