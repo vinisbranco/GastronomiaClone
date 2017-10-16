@@ -14,14 +14,25 @@ public class HibernateUtil {
 	private static Session session;
 
 	public static Session getFactory() {
+
 		try {
-			Properties prop = ReadProperties.read();
-			Configuration config = new Configuration().configure("hibernate.cfg.xml");
-			config.setProperty("hibernate.connection.url", prop.getProperty("conexao.url"));
-			config.setProperty("hibernate.connection.password", prop.getProperty("conexao.password"));
-			config.setProperty("hibernate.connection.username", prop.getProperty("conexao.user"));
-			factory = config.buildSessionFactory();
+            Configuration config;
+            if (factory == null) {
+                Properties prop = ReadProperties.read();
+                String localDb = prop.getProperty("local.db", "false");
+                if (localDb.equals("false")) {
+                    config = new Configuration().configure("hibernate.cfg.xml");
+                    config.setProperty("hibernate.connection.url", prop.getProperty("conexao.url"));
+                    config.setProperty("hibernate.connection.password", prop.getProperty("conexao.password"));
+                    config.setProperty("hibernate.connection.username", prop.getProperty("conexao.user"));
+                } else {
+                    config = new Configuration().configure("hibernate.cfg.local.xml");
+                }
+                factory = config.buildSessionFactory();
+            }
+
 			session = factory.openSession();
+
 		} catch (Throwable ex) {
 			ex.printStackTrace();
 			System.out.println("Erro ao iniciar sessao no HibernateUtil: " + ex.getMessage());
