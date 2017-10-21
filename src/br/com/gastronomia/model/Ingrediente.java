@@ -55,6 +55,12 @@ public class Ingrediente implements Serializable {
     @JsonManagedReference
 	private Set<IngredienteAtributo> ingredienteAtributo = new HashSet<>();
 
+	@Column(name= "Status")
+	private boolean status;
+	
+	@Column(name = "Tipo")
+	private String tipo;
+
 	public Ingrediente() {
 
 	}
@@ -105,6 +111,15 @@ public class Ingrediente implements Serializable {
 		this.status = status;
 	}
 
+	public String getTipo() {
+		return tipo;
+	}
+	
+	public void setTipo(String tipo) {
+			this.tipo= tipo;
+	}
+	
+	
     @Override
     public String toString() {
         return "Ingrediente{" +
@@ -114,6 +129,7 @@ public class Ingrediente implements Serializable {
                 ", origem='" + origem + '\'' +
                 ", ingredienteAtributo=" + ingredienteAtributo +
                 ", status=" + status +
+                ", tipo=" + tipo +
                 '}';
     }
 }
