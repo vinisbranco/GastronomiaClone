@@ -86,5 +86,21 @@ public class ReceitaIngrediente implements Serializable {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        ReceitaIngrediente that = (ReceitaIngrediente) o;
+
+        if (ingrediente != null ? !ingrediente.equals(that.ingrediente) : that.ingrediente != null) return false;
+        return receita != null ? receita.equals(that.receita) : that.receita == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = ingrediente != null ? ingrediente.hashCode() : 0;
+        result = 31 * result + (receita != null ? receita.hashCode() : 0);
+        return result;
+    }
 }

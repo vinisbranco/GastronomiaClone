@@ -15,9 +15,9 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import java.sql.SQLException;
 
-@Path("ireceitas")
+@Path("receitas")
 public class ReceitaController {
-    private ReceitaBO ireceitaBO = new ReceitaBO();
+    private ReceitaBO receitaBO = new ReceitaBO();
     private EncryptUtil encryptUtil = new EncryptUtil();
 
     @Context
@@ -30,7 +30,7 @@ public class ReceitaController {
     //@JWTTokenNeeded
     public Response list() throws PersistenciaException, SQLException {
         try {
-            return Response.ok().entity(ireceitaBO.listReceita()).status(Response.Status.ACCEPTED).build();
+            return Response.ok().entity(receitaBO.listReceita()).status(Response.Status.ACCEPTED).build();
 
         } catch (Exception e) {
             return Response.ok().status(Response.Status.BAD_REQUEST).build();
@@ -42,15 +42,15 @@ public class ReceitaController {
     @Consumes("application/json; charset=UTF-8")
     @Produces("application/json; charset=UTF-8")
     //@JWTTokenNeeded
-    public Response create(Receita ireceita) throws PersistenciaException, ValidationException {
+    public Response create(Receita receita) throws PersistenciaException, ValidationException {
 
         try {
-            System.out.println(ireceita);
-            ireceitaBO.createReceita(ireceita);
+            System.out.println(receita);
+            receitaBO.createReceita(receita);
         } catch (Exception e) {
             return Response.ok().status(Response.Status.BAD_REQUEST).build();
         }
-        return Response.ok().entity(new StandardResponseDTO(true, "Receita "+ireceita.getNome()+", criado com sucesso!")).status(Response.Status.ACCEPTED).build();
+        return Response.ok().entity(new StandardResponseDTO(true, "Receita "+receita.getNome()+", criado com sucesso!")).status(Response.Status.ACCEPTED).build();
     }
 
     @DELETE
@@ -60,10 +60,8 @@ public class ReceitaController {
     public Response remove(@PathParam("id") Long id) throws PersistenciaException, ValidationException {
 
         try {
-            ireceitaBO.inactiveReceita(id);
-
+            receitaBO.inactiveReceita(id);
         } catch (Exception e) {
-
             return Response.ok().status(Response.Status.BAD_REQUEST).build();
         }
         return Response.ok().entity(new StandardResponseDTO(true, "Receita deletado com sucesso!")).status(Response.Status.ACCEPTED).build();
@@ -76,7 +74,7 @@ public class ReceitaController {
     public Response searchByID(@PathParam("id") Long id) throws PersistenciaException, ValidationException {
 
         try {
-            return Response.ok().entity(ireceitaBO.getReceitaById(id)).status(Response.Status.ACCEPTED).build();
+            return Response.ok().entity(receitaBO.getReceitaById(id)).status(Response.Status.ACCEPTED).build();
         } catch (Exception e) {
             return Response.ok().status(Response.Status.BAD_REQUEST).build();
         }
@@ -88,14 +86,14 @@ public class ReceitaController {
     @Consumes("application/json; charset=UTF-8")
     @Produces("application/json; charset=UTF-8")
     //@JWTTokenNeeded
-    public Response update(Receita ireceita) throws PersistenciaException, ValidationException {
+    public Response update(Receita receita) throws PersistenciaException, ValidationException {
         try {
-            ireceitaBO.updateReceita(ireceita);
+            receitaBO.updateReceita(receita);
         } catch (Exception e) {
             e.printStackTrace();
             return Response.ok().status(Response.Status.BAD_REQUEST).build();
         }
-        return Response.ok().entity(new StandardResponseDTO(true, "Receita "+ireceita.getNome()+ " editado com sucesso!")).status(Response.Status.ACCEPTED).build();
+        return Response.ok().entity(new StandardResponseDTO(true, "Receita "+receita.getNome()+ " editado com sucesso!")).status(Response.Status.ACCEPTED).build();
 
     }
 }
