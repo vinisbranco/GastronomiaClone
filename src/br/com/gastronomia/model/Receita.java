@@ -2,6 +2,7 @@ package br.com.gastronomia.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -38,7 +39,8 @@ public class Receita implements Serializable {
     private boolean status;
 
     @Column(name = "Passos", nullable = false)
-    private List<String> passos;
+    @Type(type="text")
+    private String passos;
 
     @Column(name = "Rendimento", nullable = false)
     private double rendimento;
@@ -91,11 +93,11 @@ public class Receita implements Serializable {
         this.status = status;
     }
 
-    public List<String> getPassos() {
+    public String getPassos() {
         return passos;
     }
 
-    public void setPassos(List<String> passos) {
+    public void setPassos(String passos) {
         this.passos = passos;
     }
 

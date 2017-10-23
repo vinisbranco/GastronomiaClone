@@ -18,7 +18,7 @@ import java.io.Serializable;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name= "Ingrediente_Atributo")
-@IdClass(IngredienteAtributoId.class)
+@IdClass(ReceitaIngredienteId.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
 
 public class ReceitaIngrediente implements Serializable {
