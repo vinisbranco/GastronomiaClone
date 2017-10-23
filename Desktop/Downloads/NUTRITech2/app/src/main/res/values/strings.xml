@@ -1,0 +1,86 @@
+<resources>
+    <string name="app_name">NUTRITech</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="email">E-mail</string>
+    <string name="password">Senha</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
+    <string name="login_btn_sign_in">ENTRAR</string>
+    <string name="login_btn_sign_on">CADASTRAR</string>
+    <string name="login_btn_forgotpwd">Esqueceu a Senha?</string>
+    <string name="title_activity_recuperar_senha">RecuperarSenha</string>
+    <string name="recuperarsenha">RECUPERAR SENHA</string>
+    <string name="cadastronome_hint">Nome</string>
+    <string name="cadastroemail">E-mail</string>
+    <string name="cadastrocpf_hint">CPF</string>
+    <string name="cadastromatricula_hint">Matricula</string>
+    <string name="cadastrosenha_hint">Senha</string>
+    <string name="cadastrosenha2_hint">Confirmar Senha</string>
+    <string name="criarcadastro">Confirmar</string>
+    <string name="email_cadastrado">E-mail cadastrrado</string>
+    <string name="enviarsenha">Confirmar</string>
+    <string name="btn_recuperar_senha">Confirmar</string>
+    <string name="recuperar_senha">Informe o E-mail utilizado no cadastro para que uma nova senha seja gerada.</string>
+
+    <!-- LOGIN -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Senha</string>
+    <string name="forgot_password">Esqueceu a senha?</string>
+    <string name="action_sign_on">CADASTRAR</string>
+    <string name="cadastro_title_bar">CADASTRO</string>
+
+    <!-- CADASTRO -->
+    <string name="name">Nome</string>
+    <string name="cpf">Cpf</string>
+    <string name="matricula">Matricula</string>
+    <string name="confirmpassword">Confirmar Senha</string>
+    <string name="recusa_cadastro_msg">Cadastro criado com sucesso!</string>
+    <string name="confirma_cadastro_msg">Cadastro criado com sucesso!</string>
+    <string name="title_activity_cadastro">Cadastro</string>
+    <string name="cadastroemail_hint">Email</string>
+    <string name="error_match_password">Senhas não são iguais!</string>
+    <string name="title_activity_cadastro_ficha">CadastroFicha</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="ficha_nome_receita">Nome da Receita</string>
+    <string name="enviarficha">ENVIAR FICHA</string>
+    <string name="btn_criarficha">CRIAR FICHA</string>
+    <string name="spinner_partic_label">Nome dos Participantes</string>
+    <string name="spinner_prof_label">Nome dos Professores</string>
+    <string name="spinner_tiporeceita_label">Tipo da Receita</string>
+    <string name="checkbox_modo_label">Modo de Visualização</string>
+    <string name="radio_modo1">Público</string>
+    <string name="radio_modo2">Privado</string>
+    <string name="ficha_ingrediente">Ingredientes</string>
+    <string name="ficha_custo">Custo (R$)</string>
+    <string name="ficha_peso">Peso (g)</string>
+    <string name="modopreparo_label">Modo de Preparo</string>
+    <string name="rendimento">Rendimento</string>
+    <string name="imagem">Nenhuma imagem selecionada</string>
+    <string name="title_activity_navigation_test">NavigationTest</string>
+
+    <!-- Lista De Ingredientes -->
+    <string name="editar">Editar</string>
+    <string name="excluir">Excluir</string>
+    <string name="a_es">Ações</string>
+
+    <!-- Cadastro De Ingrediente -->
+    <string name="cadastro_ingrediente">Cadastro de Ingredientes</string>
+    <string name="limpar_tudo">Limpar tudo</string>
+    <string name="atributos">Atributos</string>
+
+</resources>
