@@ -54,9 +54,6 @@ public class Ingrediente implements Serializable {
 			})
     @JsonManagedReference
 	private Set<IngredienteAtributo> ingredienteAtributo = new HashSet<>();
-
-	@Column(name= "Status")
-	private boolean status;
 	
 	@Column(name = "Tipo")
 	private String tipo;
