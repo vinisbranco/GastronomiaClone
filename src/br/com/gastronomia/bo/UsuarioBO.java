@@ -34,7 +34,6 @@ public class UsuarioBO {
 	public boolean createUser(Usuario usuario) throws ValidationException, NoSuchAlgorithmException {
 		if (usuario != null) {
 			usuario.setTipo(Constantes.USER_ROLE);
-			usuario.setStatus(true);
 			String encryptedPassword = EncryptUtil.encrypt2(usuario.getSenha());
 			usuario.setSenha(encryptedPassword);
 			usuarioDAO.save(usuario);
