@@ -2,19 +2,13 @@ package br.com.gastronomia.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.Table;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 
+import br.com.gastronomia.util.TipoDeUsuario;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 /**
@@ -59,9 +53,9 @@ public class Usuario implements Serializable {
 	@Column(name= "Senha")
 	private String senha;
 
-    @NotEmpty
     @Column(name= "Tipo")
-	private String tipo;
+    @Enumerated(EnumType.STRING)
+	private TipoDeUsuario tipo;
 	
 	
 	@Column(name= "Status", nullable = false)
@@ -131,11 +125,11 @@ public class Usuario implements Serializable {
 		this.senha = senha;
 	}
 
-	public String getTipo() {
+	public TipoDeUsuario getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(String tipo) {
+	public void setTipo(TipoDeUsuario tipo) {
 		this.tipo = tipo;
 	}
 
@@ -165,7 +159,7 @@ public class Usuario implements Serializable {
 	@Override
 	public String toString() {
 		return "Usuario [id=" + id + ", cpf=" + cpf + ", email=" + email + ", matricula=" + matricula + ", nome=" + nome
-				+ ", senha=" + senha + ", tipo=" + tipo + ", status=" + status + "]";
+				+ ", senha=" + senha + ", tipo=" + tipo.toString() + ", status=" + status + "]";
 	}
 
 }

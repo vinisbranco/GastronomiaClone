@@ -77,7 +77,7 @@ public class UsuarioFormattedDTO implements Serializable {
 		dto.setCpf(usuario.getCpf());
 		dto.setEmail(usuario.getEmail());
 		dto.setName(usuario.getNome());
-		dto.setRole(usuario.getTipo());
+		dto.setRole(usuario.getTipo().toString());
 		dto.setActive(usuario.isStatus());
 
 		return dto;
