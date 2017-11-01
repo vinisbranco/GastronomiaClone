@@ -17,7 +17,7 @@ import java.io.Serializable;
  **/
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name= "Ingrediente_Atributo")
+@Table(name= "Receita_Ingrediente")
 @IdClass(ReceitaIngredienteId.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
 
