@@ -53,7 +53,12 @@ public class UsuarioBO {
 
 	public long updateUser(Usuario usuario) throws ValidationException, NoSuchAlgorithmException {
 		if (usuario != null) {
-			String encryptedPassword = EncryptUtil.encrypt2(usuario.getSenha());
+			String encryptedPassword = null;
+			if (usuario.getSenha().isEmpty()) {
+				encryptedPassword = usuarioDAO.findUserByID(usuario.getId()).getSenha();
+			} else {
+				encryptedPassword = EncryptUtil.encrypt2(usuario.getSenha());
+			}
 			usuario.setSenha(encryptedPassword);
 			return usuarioDAO.updateUser(usuario);
 		}
