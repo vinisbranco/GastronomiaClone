@@ -45,6 +45,9 @@ public class Receita implements Serializable {
     @Column(name = "Rendimento", nullable = false)
     private double rendimento;
 
+    @Column(name = "Tempo", nullable = false)
+    private String tempo;
+
     @ManyToMany
     @JoinTable(name="ReceitaUsuario", joinColumns=
             {@JoinColumn(name="IdReceita")}, inverseJoinColumns=
@@ -109,6 +112,14 @@ public class Receita implements Serializable {
         this.rendimento = rendimento;
     }
 
+    public String getTempo() {
+        return tempo;
+    }
+
+    public void setTempo(String tempo) {
+        this.tempo = tempo;
+    }
+
     public Set<Usuario> getCriadores() {
         return criadores;
     }
@@ -147,7 +158,8 @@ public class Receita implements Serializable {
                 "id=" + id +
                 ", nome='" + nome +
                 ", passos=" + passos.toString() +
-                ", rendimento='" + rendimento + '\'' +
+                ", rendimento='" + rendimento  +
+                ", tempo='" + tempo  +
                 ", ingredienteReceita=" + receitaIngrediente +
                 ", criadores=" + criadores +
                 ", professor=" + professor +
