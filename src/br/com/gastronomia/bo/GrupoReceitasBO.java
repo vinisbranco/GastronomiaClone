@@ -26,7 +26,6 @@ public class GrupoReceitasBO {
 
 	public boolean createGroup(GrupoReceitas grupo) throws ValidationException, NoSuchAlgorithmException {
 		if (grupo != null) {
-			grupo.setStatus(true);
 			grupoReceitasDAO.save(grupo);
 			return true;
 		}

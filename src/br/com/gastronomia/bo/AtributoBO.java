@@ -26,7 +26,6 @@ public class AtributoBO {
 
 	public boolean createAtributo(Atributo atributo) throws ValidationException, NoSuchAlgorithmException {
 		if (atributo != null) {
-			atributo.setStatus(true);
 			atributoDAO.save(atributo);
 			return true;
 		}
