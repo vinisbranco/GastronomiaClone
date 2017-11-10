@@ -161,6 +161,22 @@ public class Receita implements Serializable {
         this.grupoReceita = grupoReceita;
     }
 
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
+    }
+
+    public Tipo getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(Tipo tipo) {
+        this.tipo = tipo;
+    }
+
     @Override
     public String toString() {
         return "Ingrediente{" +
@@ -169,6 +185,8 @@ public class Receita implements Serializable {
                 ", passos=" + passos.toString() +
                 ", rendimento='" + rendimento  +
                 ", tempo='" + tempo  +
+                ", imagem='" + imagem  +
+                ", tipo='" + tipo  +
                 ", ingredienteReceita=" + receitaIngrediente +
                 ", criadores=" + criadores +
                 ", professor=" + professor +
