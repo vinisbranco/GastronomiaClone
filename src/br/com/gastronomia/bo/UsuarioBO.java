@@ -32,9 +32,7 @@ public class UsuarioBO {
 	}
 
 	public boolean createUser(Usuario usuario) throws ValidationException, NoSuchAlgorithmException {
-		if (usuario != null) {
-			usuario.setTipo(Constantes.USER_ROLE);
-			usuario.setStatus(true);
+		if (usuario != null || !usuario.getSenha().isEmpty()) {
 			String encryptedPassword = EncryptUtil.encrypt2(usuario.getSenha());
 			usuario.setSenha(encryptedPassword);
 			usuarioDAO.save(usuario);
@@ -54,7 +52,12 @@ public class UsuarioBO {
 
 	public long updateUser(Usuario usuario) throws ValidationException, NoSuchAlgorithmException {
 		if (usuario != null) {
-			String encryptedPassword = EncryptUtil.encrypt2(usuario.getSenha());
+			String encryptedPassword = null;
+			if (usuario.getSenha().isEmpty()) {
+				encryptedPassword = usuarioDAO.findUserByID(usuario.getId()).getSenha();
+			} else {
+				encryptedPassword = EncryptUtil.encrypt2(usuario.getSenha());
+			}
 			usuario.setSenha(encryptedPassword);
 			return usuarioDAO.updateUser(usuario);
 		}
