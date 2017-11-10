@@ -79,7 +79,7 @@ public class GrupoController {
 
 			return Response.ok().status(Response.Status.BAD_REQUEST).build();
 		}
-		return Response.ok().entity(new StandardResponseDTO(true, "Grupo de Receita deletado com sucesso!")).status(Response.Status.ACCEPTED).build();
+		return Response.ok().entity(new StandardResponseDTO(true, "Grupo de Receita desativado com sucesso!")).status(Response.Status.ACCEPTED).build();
 
 	}
 	@GET

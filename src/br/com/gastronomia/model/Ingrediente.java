@@ -1,6 +1,7 @@
 package br.com.gastronomia.model;
 
 
+import br.com.gastronomia.util.TipoDeIngrediente;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -54,6 +55,10 @@ public class Ingrediente implements Serializable {
 			})
     @JsonManagedReference
 	private Set<IngredienteAtributo> ingredienteAtributo = new HashSet<>();
+	
+	@Column(name = "Tipo")
+    @Enumerated(EnumType.STRING)
+	private TipoDeIngrediente tipo;
 
 	public Ingrediente() {
 
@@ -105,6 +110,15 @@ public class Ingrediente implements Serializable {
 		this.status = status;
 	}
 
+	public TipoDeIngrediente getTipo() {
+		return tipo;
+	}
+	
+	public void setTipo(TipoDeIngrediente tipo) {
+			this.tipo= tipo;
+	}
+	
+	
     @Override
     public String toString() {
         return "Ingrediente{" +
@@ -114,6 +128,7 @@ public class Ingrediente implements Serializable {
                 ", origem='" + origem + '\'' +
                 ", ingredienteAtributo=" + ingredienteAtributo +
                 ", status=" + status +
+                ", tipo=" + tipo.toString() +
                 '}';
     }
 }

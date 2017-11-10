@@ -73,7 +73,7 @@ public class UsuarioController {
 		} catch (Exception e) {
 			return Response.ok().status(Response.Status.BAD_REQUEST).build();
 		}
-		return Response.ok().entity(new StandardResponseDTO(true, "Usuario deletado com sucesso!")).status(Response.Status.ACCEPTED).build();
+		return Response.ok().entity(new StandardResponseDTO(true, "Usuario desativado com sucesso!")).status(Response.Status.ACCEPTED).build();
 
 	}
 	@GET
