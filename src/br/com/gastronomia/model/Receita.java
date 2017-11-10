@@ -25,6 +25,9 @@ import java.util.List;
 public class Receita implements Serializable {
 
     private static final long serialVersionUID = -789863172532826108L;
+    private enum Tipo {
+        PUBLICO, PRIVADO, NULL
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -47,6 +50,12 @@ public class Receita implements Serializable {
 
     @Column(name = "Tempo", nullable = false)
     private String tempo;
+
+    @Column(name = "Imagem", nullable = false)
+    private String imagem;
+
+    @Column(name = "Tipo", nullable = false)
+    private Tipo tipo;
 
     @ManyToMany
     @JoinTable(name="ReceitaUsuario", joinColumns=
