@@ -25,6 +25,9 @@ import java.util.List;
 public class Receita implements Serializable {
 
     private static final long serialVersionUID = -789863172532826108L;
+    private enum Tipo {
+        PUBLICO, PRIVADO, NULL
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -44,6 +47,15 @@ public class Receita implements Serializable {
 
     @Column(name = "Rendimento", nullable = false)
     private double rendimento;
+
+    @Column(name = "Tempo", nullable = false)
+    private String tempo;
+
+    @Column(name = "Imagem", nullable = false)
+    private String imagem;
+
+    @Column(name = "Tipo", nullable = false)
+    private Tipo tipo;
 
     @ManyToMany
     @JoinTable(name="ReceitaUsuario", joinColumns=
@@ -109,6 +121,14 @@ public class Receita implements Serializable {
         this.rendimento = rendimento;
     }
 
+    public String getTempo() {
+        return tempo;
+    }
+
+    public void setTempo(String tempo) {
+        this.tempo = tempo;
+    }
+
     public Set<Usuario> getCriadores() {
         return criadores;
     }
@@ -141,13 +161,32 @@ public class Receita implements Serializable {
         this.grupoReceita = grupoReceita;
     }
 
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
+    }
+
+    public Tipo getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(Tipo tipo) {
+        this.tipo = tipo;
+    }
+
     @Override
     public String toString() {
         return "Ingrediente{" +
                 "id=" + id +
                 ", nome='" + nome +
                 ", passos=" + passos.toString() +
-                ", rendimento='" + rendimento + '\'' +
+                ", rendimento='" + rendimento  +
+                ", tempo='" + tempo  +
+                ", imagem='" + imagem  +
+                ", tipo='" + tipo  +
                 ", ingredienteReceita=" + receitaIngrediente +
                 ", criadores=" + criadores +
                 ", professor=" + professor +
