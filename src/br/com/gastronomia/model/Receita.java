@@ -57,7 +57,7 @@ public class Receita implements Serializable {
     @Column(name = "Tipo", nullable = false)
     private Tipo tipo;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name="ReceitaUsuario", joinColumns=
             {@JoinColumn(name="IdReceita")}, inverseJoinColumns=
             {@JoinColumn(name="IdUsuario")})
