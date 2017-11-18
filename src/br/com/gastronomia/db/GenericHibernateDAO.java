@@ -69,6 +69,7 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 		Session session = HibernateUtil.getFactory();
 		String queryAll = "Select t from " + T.getSimpleName() + " t ";
 		List<T> objects = session.createQuery(queryAll).list();
+		session.close();
 		return objects;
 	}
 
@@ -102,8 +103,10 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 		// <2
 		String hql = "Select T." + field + " FROM " + T.getClass().getSimpleName() + " T  where T." + parameter
 				+ " = ?";
-		return session.createQuery(hql).setString(0, valueParameter).getSingleResult().toString().replace("[", "")
+		String results =  session.createQuery(hql).setString(0, valueParameter).getSingleResult().toString().replace("[", "")
 				.replace("]", "");
+		session.close();
+		return results;
 		// return session.createQuery(hql).getSingleResult().toString();
 	}
 
@@ -114,7 +117,7 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 		String sql = "Select T." + field + " FROM " + T.getClass().getSimpleName() + " T  where T." + parameter + " ="
 				+ valueParameter;
 		String results = session.createQuery(sql).list().toString();
-
+        session.close();
 		return results;
 	}
 
@@ -123,7 +126,10 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 		Session session = HibernateUtil.getFactory();
 		
 		String hql = "Select T FROM " + T.getSimpleName() + " T  where T." + parameter + " = :" +parameter ;
-		return session.createQuery(hql).setParameter(parameter, valueParameter).getSingleResult();
+        Object results =  session.createQuery(hql).setParameter(parameter, valueParameter).getSingleResult();
+        session.close();
+
+        return  results;
 
 		
 	}
