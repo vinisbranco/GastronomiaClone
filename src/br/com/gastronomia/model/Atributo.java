@@ -44,7 +44,7 @@ public class Atributo implements Serializable {
 	private long multiplicador;
 
     @Column(name = "Ordem")
-    private long ordem;
+    private Long ordem;
 
 	@Column(name= "Obrigatorio", nullable = false)
 	private boolean obrigatorio;
@@ -89,7 +89,7 @@ public class Atributo implements Serializable {
     public long getMultiplicador() {
         return multiplicador;
     }
-    public long getOrdem() {
+    public Long getOrdem() {
         return ordem;
     }
 
@@ -98,7 +98,7 @@ public class Atributo implements Serializable {
 	}
 
     public void setMultiplicador(long multiplicador) { this.multiplicador = multiplicador; }
-    public void setOrdem(long ordem) { this.ordem = ordem; }
+    public void setOrdem(Long ordem) { this.ordem = ordem; }
 
 	public void setObrigatorio(boolean obrigatorio) {
 		this.obrigatorio = obrigatorio;
