@@ -7,6 +7,7 @@ import org.hibernate.annotations.Type;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.List;
@@ -41,9 +42,10 @@ public class Receita implements Serializable {
     @Column(name= "Status", nullable = false)
     private boolean status;
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name="Passos", joinColumns=@JoinColumn(name="IdReceita"))
     @Column(name = "Passos", nullable = false)
-    @Type(type="text")
-    private String passos;
+    private ArrayList<String> passos = new ArrayList<String>();
 
     @Column(name = "Rendimento", nullable = false)
     private double rendimento;
@@ -105,11 +107,9 @@ public class Receita implements Serializable {
         this.status = status;
     }
 
-    public String getPassos() {
-        return passos;
-    }
+    public ArrayList<String> getPassos() { return passos; }
 
-    public void setPassos(String passos) {
+    public void setPassos(ArrayList<String> passos) {
         this.passos = passos;
     }
 
