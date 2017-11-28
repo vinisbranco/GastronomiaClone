@@ -45,7 +45,7 @@ public class Receita implements Serializable {
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name="Passos", joinColumns=@JoinColumn(name="IdReceita"))
     @Column(name = "Passos", nullable = false)
-    private ArrayList<String> passos = new ArrayList<String>();
+    private List<String> passos = new ArrayList<String>();
 
     @Column(name = "Rendimento", nullable = false)
     private double rendimento;
@@ -107,9 +107,9 @@ public class Receita implements Serializable {
         this.status = status;
     }
 
-    public ArrayList<String> getPassos() { return passos; }
+    public List<String> getPassos() { return passos; }
 
-    public void setPassos(ArrayList<String> passos) {
+    public void setPassos(List<String> passos) {
         this.passos = passos;
     }
 
