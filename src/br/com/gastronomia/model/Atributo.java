@@ -39,7 +39,7 @@ public class Atributo implements Serializable {
 	@Column(name = "Unidade")
 	private String unidade;
 
-	@Min(1)
+	@Min(0)
 	@Column(name = "Multiplicador")
 	private long multiplicador;
 
