@@ -57,7 +57,7 @@ public class AtributoBO {
 	public HashMap<String, List<Atributo>> listAtributos() {
 		ArrayList<Atributo> atributos = null;
 		HashMap<String, List<Atributo>> listAtributos = new HashMap<String, List<Atributo>>();
-		atributos = (ArrayList<Atributo>) atributoDAO.listAll(Atributo.class);
+		atributos = (ArrayList<Atributo>) atributoDAO.listAllOrder(Atributo.class, "Ordem");
 		listAtributos.put("Atributos", atributos);
 		return listAtributos;
 	}

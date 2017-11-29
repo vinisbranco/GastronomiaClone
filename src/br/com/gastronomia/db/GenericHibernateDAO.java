@@ -61,9 +61,6 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 		}
 	}
 
-
-
-
 	@Override
 	public List<T> listAll(Class<?> T) {
 		Session session = HibernateUtil.getFactory();
@@ -72,6 +69,14 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 		session.close();
 		return objects;
 	}
+
+    public List<T> listAllOrder(Class<?> T, String field) {
+        Session session = HibernateUtil.getFactory();
+        String queryAll = "Select t from " + T.getSimpleName() + " t ORDER BY "+field+" ASC ";
+        List<T> objects = session.createQuery(queryAll).list();
+        session.close();
+        return objects;
+    }
 
 	@Override
 	public T findId(long id,Class<?> c) throws ValidationException {
