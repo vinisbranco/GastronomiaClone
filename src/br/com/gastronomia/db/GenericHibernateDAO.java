@@ -1,5 +1,6 @@
 package br.com.gastronomia.db;
 
+import br.com.gastronomia.exception.ValidationException;
 import br.com.gastronomia.imp.GenericDAO;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -12,7 +13,7 @@ import java.util.List;
 public class GenericHibernateDAO<T> implements GenericDAO<T> {
 
 	@Override
-	public long save(T obj) {
+	public long save(T obj) throws ValidationException {
 		try {
 			Session session = HibernateUtil.getFactory();
 			Transaction tx = null;
@@ -26,6 +27,7 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 					tx.rollback();
 				e.printStackTrace();
 				System.out.println("Erro de HibernateException ao salvar no GenericHibernateDAO: " + e.getMessage());
+                throw new ValidationException("invalido");
 			} finally {
 				session.close();
 			}
@@ -34,12 +36,12 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Erro de Exception no salvar do GenericHibernateDAO: " + e.getMessage());
+            throw new ValidationException("invalido");
 		}
-		return 0;
-	}
+    }
 
 	@Override
-	public long remove(T obj) {
+	public long remove(T obj) throws ValidationException {
 		Session session = HibernateUtil.getFactory();
 		Transaction tx = null;
 		long sucess = 0;
@@ -53,25 +55,31 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 				tx.rollback();
 			e.printStackTrace();
 			System.out.println("Erro de HibernateException ao excluir no GenericHibernateDAO: " + e.getMessage());
-			return sucess;
-		} finally {
+            throw new ValidationException("invalido");
+        } finally {
 			session.close();
 		}
 	}
-
-
-
 
 	@Override
 	public List<T> listAll(Class<?> T) {
 		Session session = HibernateUtil.getFactory();
 		String queryAll = "Select t from " + T.getSimpleName() + " t ";
 		List<T> objects = session.createQuery(queryAll).list();
+		session.close();
 		return objects;
 	}
 
+    public List<T> listAllOrder(Class<?> T, String field) {
+        Session session = HibernateUtil.getFactory();
+        String queryAll = "Select t from " + T.getSimpleName() + " t ORDER BY "+field+" ASC ";
+        List<T> objects = session.createQuery(queryAll).list();
+        session.close();
+        return objects;
+    }
+
 	@Override
-	public T findId(long id,Class<?> c) {
+	public T findId(long id,Class<?> c) throws ValidationException {
 
 		Session session = HibernateUtil.getFactory();
 		Transaction tx = null;
@@ -86,13 +94,12 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 				tx.rollback();
 			e.printStackTrace();
 			System.out.println("Erro de HibernateException ao excluir no GenericHibernateDAO: " + e.getMessage());
-		
+            throw new ValidationException("invalido");
 		} finally {
 			session.close();
 		}
-		return null;
 
-	}
+    }
 	@SuppressWarnings("deprecation")
 	@Override
 	public String findSingleResultString(String parameter, Object T, String valueParameter, String field) {
@@ -101,8 +108,10 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 		// <2
 		String hql = "Select T." + field + " FROM " + T.getClass().getSimpleName() + " T  where T." + parameter
 				+ " = ?";
-		return session.createQuery(hql).setString(0, valueParameter).getSingleResult().toString().replace("[", "")
+		String results =  session.createQuery(hql).setString(0, valueParameter).getSingleResult().toString().replace("[", "")
 				.replace("]", "");
+		session.close();
+		return results;
 		// return session.createQuery(hql).getSingleResult().toString();
 	}
 
@@ -113,7 +122,7 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 		String sql = "Select T." + field + " FROM " + T.getClass().getSimpleName() + " T  where T." + parameter + " ="
 				+ valueParameter;
 		String results = session.createQuery(sql).list().toString();
-
+        session.close();
 		return results;
 	}
 
@@ -122,13 +131,16 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 		Session session = HibernateUtil.getFactory();
 		
 		String hql = "Select T FROM " + T.getSimpleName() + " T  where T." + parameter + " = :" +parameter ;
-		return session.createQuery(hql).setParameter(parameter, valueParameter).getSingleResult();
+        Object results =  session.createQuery(hql).setParameter(parameter, valueParameter).getSingleResult();
+        session.close();
+
+        return  results;
 
 		
 	}
 
 	@Override
-	public long merge(Object T) {
+	public long merge(Object T) throws ValidationException {
 		Session session = HibernateUtil.getFactory();
 		Transaction tx = null;
 		long id = 0;
@@ -142,6 +154,7 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 			if (tx != null)
 				tx.rollback();
 			e.printStackTrace();
+            throw new ValidationException("invalido");
 		} finally {
 			session.close();
 		}

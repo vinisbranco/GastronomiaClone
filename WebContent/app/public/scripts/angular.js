@@ -10753,21 +10753,6 @@ function directiveNormalize(name) {
  * Closure compiler type information
  */
 
-function nodesetLinkingFn(
-  /* angular.Scope */ scope,
-  /* NodeList */ nodeList,
-  /* Element */ rootElement,
-  /* function(Function) */ boundTranscludeFn
-) {}
-
-function directiveLinkingFn(
-  /* nodesetLinkingFn */ nodesetLinkingFn,
-  /* angular.Scope */ scope,
-  /* Node */ node,
-  /* Element */ rootElement,
-  /* function(Function) */ boundTranscludeFn
-) {}
-
 function tokenDifference(str1, str2) {
   var values = '',
       tokens1 = str1.split(/\s+/),
@@ -15405,11 +15390,7 @@ function findConstantAndWatchExpressions(ast, $filter, parentIsPure) {
     ast.constant = allConstants;
     ast.toWatch = argsToWatch;
     break;
-  case AST.ThisExpression:
-    ast.constant = false;
-    ast.toWatch = [];
-    break;
-  case AST.LocalsExpression:
+  case AST.ThisExpression || AST.LocalsExpression:
     ast.constant = false;
     ast.toWatch = [];
     break;

@@ -2,8 +2,8 @@ package br.com.gastronomia.authorization;
 
 /* Must be Prime Numbers */
 public class Role {
-	public final static long ADMINISTRATOR = 2;
-	public final static long USER = 3;
+	public static final long ADMINISTRATOR = 2;
+	public static final long USER = 3;
 
 	/*
         Get the specific prime number associated with the @role
