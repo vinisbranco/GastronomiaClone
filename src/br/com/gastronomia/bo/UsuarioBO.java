@@ -8,7 +8,6 @@ import java.util.List;
 import br.com.gastronomia.dao.UsuarioDAO;
 import br.com.gastronomia.exception.ValidationException;
 import br.com.gastronomia.model.Usuario;
-import br.com.gastronomia.util.Constantes;
 import br.com.gastronomia.util.EncryptUtil;
 import br.com.gastronomia.util.MensagemContantes;
 import br.com.gastronomia.util.Validator;
