@@ -11,6 +11,8 @@ import java.util.List;
 @SuppressWarnings("unchecked")
 
 public class GenericHibernateDAO<T> implements GenericDAO<T> {
+	private String whereT = " T  where T.";
+	private String invalidMessage = "invalido";
 
 	@Override
 	public long save(T obj) throws ValidationException {
@@ -27,7 +29,7 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 					tx.rollback();
 				e.printStackTrace();
 				System.out.println("Erro de HibernateException ao salvar no GenericHibernateDAO: " + e.getMessage());
-                throw new ValidationException("invalido");
+                throw new ValidationException(invalidMessage);
 			} finally {
 				session.close();
 			}
@@ -36,7 +38,7 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Erro de Exception no salvar do GenericHibernateDAO: " + e.getMessage());
-            throw new ValidationException("invalido");
+            throw new ValidationException(invalidMessage);
 		}
     }
 
@@ -55,7 +57,7 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 				tx.rollback();
 			e.printStackTrace();
 			System.out.println("Erro de HibernateException ao excluir no GenericHibernateDAO: " + e.getMessage());
-            throw new ValidationException("invalido");
+            throw new ValidationException(invalidMessage);
         } finally {
 			session.close();
 		}
@@ -94,7 +96,7 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 				tx.rollback();
 			e.printStackTrace();
 			System.out.println("Erro de HibernateException ao excluir no GenericHibernateDAO: " + e.getMessage());
-            throw new ValidationException("invalido");
+            throw new ValidationException(invalidMessage);
 		} finally {
 			session.close();
 		}
@@ -106,7 +108,7 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 		Session session = HibernateUtil.getFactory();
 		// Deus me perdoe por tudo que tive que fazer para isto vir a funcionar
 		// <2
-		String hql = "Select T." + field + " FROM " + T.getClass().getSimpleName() + " T  where T." + parameter
+		String hql = "Select T." + field + " FROM " + T.getClass().getSimpleName() + whereT + parameter
 				+ " = ?";
 		String results =  session.createQuery(hql).setString(0, valueParameter).getSingleResult().toString().replace("[", "")
 				.replace("]", "");
@@ -119,7 +121,7 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 	public String findMultipleResultString(String parameter, Object T, String valueParameter, String field) {
 		Session session = HibernateUtil.getFactory();
 		// Select T.password from FROM Usuario T WHERE T.cpf = 10
-		String sql = "Select T." + field + " FROM " + T.getClass().getSimpleName() + " T  where T." + parameter + " ="
+		String sql = "Select T." + field + " FROM " + T.getClass().getSimpleName() + whereT + parameter + " ="
 				+ valueParameter;
 		String results = session.createQuery(sql).list().toString();
         session.close();
@@ -130,7 +132,7 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 	public Object findSingleObject(String parameter, Class<?> T, Object valueParameter) {
 		Session session = HibernateUtil.getFactory();
 		
-		String hql = "Select T FROM " + T.getSimpleName() + " T  where T." + parameter + " = :" +parameter ;
+		String hql = "Select T FROM " + T.getSimpleName() + whereT + parameter + " = :" +parameter ;
         Object results =  session.createQuery(hql).setParameter(parameter, valueParameter).getSingleResult();
         session.close();
 
@@ -154,7 +156,7 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 			if (tx != null)
 				tx.rollback();
 			e.printStackTrace();
-            throw new ValidationException("invalido");
+            throw new ValidationException(invalidMessage);
 		} finally {
 			session.close();
 		}
