@@ -28,7 +28,7 @@ public class SendMail {
 
 			email.setAuthenticator(new DefaultAuthenticator("ideiasages@gmail.com", "agesideias2017"));
 			email.setSSLOnConnect(true);
-
+			email.setSSLCheckServerIdentity(true);
 			email.addTo(emailDestinatario, destinatario);
 
 		  // Remetente
