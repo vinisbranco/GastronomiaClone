@@ -32,7 +32,7 @@ create table Ingrediente_Atributo (
 	constraint pk_Ingrediente_Atributo primary key (IdAtributo, IdIngrediente)
 );
 create table Receita (
-	IdReceita bigint(20 primary key),
+	IdReceita bigint(20) primary key,
 	Imagem varchar(255) not null,
 	Nome varchar(255),
 	Passos longtext not null,
@@ -41,7 +41,7 @@ create table Receita (
 	Tempo varchar(255) not null,
 	Tipo int(11) not null,
 	GrupoReceita bigint(20) not null,
-	IdUsuario Higini(20) not null
+	IdUsuario bigint(20) not null
 );
 create table ReceitaUsuario (
 	IdReceita bigint(20),
