@@ -20,8 +20,7 @@ import java.util.Map;
 public class ExportCSV {
 
 	private static void generateCsvFile(String sFileName) {
-		try {
-			FileWriter writer = new FileWriter(sFileName);
+		try(FileWriter writer = new FileWriter(sFileName)) {
 
 			writer.append("DisplayName");
 			writer.append(',');
@@ -53,7 +52,7 @@ public class ExportCSV {
 
 		Connection conexao = null;
 		conexao = ConexaoUtil.getConexao();
-		Statement stmt;
+		Statement stmt = null;
 		String query;
 		try {
 			stmt = conexao.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -63,18 +62,18 @@ public class ExportCSV {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			stmt = null;
 		} finally {
 			conexao.close();
+			if(stmt != null)
+				stmt.close();
 		}
 	}
 
 
 	public static void writeToCSV(List<Map> objectList) {
 		String CSV_SEPARATOR = ",";
-		try {
-			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
-					new FileOutputStream("c:\\CAWT\\results.csv"), "UTF-8"));
+		try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
+					new FileOutputStream("c:\\CAWT\\results.csv"), "UTF-8"))) {
 			for (Map objectDetails : objectList) {
 				StringBuffer oneLine = new StringBuffer();
 				Iterator it = objectDetails.values().iterator();
@@ -95,9 +94,8 @@ public class ExportCSV {
 			}
 			bw.flush();
 			bw.close();
-		} catch (UnsupportedEncodingException e) {
-		} catch (FileNotFoundException e) {
 		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 
