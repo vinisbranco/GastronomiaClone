@@ -1,21 +1,25 @@
-package test.br.com.gastronomia.testIngredientBO;
+package br.com.gastronomia.testIngredientBO;
 
 import static org.junit.Assert.assertEquals;
 
 import java.security.NoSuchAlgorithmException;
 
+import org.junit.Before;
 import org.junit.Test;
 
-import br.com.gastronomia.model.Ingrediente;
 import br.com.gastronomia.bo.IngredienteBO;
 import br.com.gastronomia.exception.ValidationException;
+import br.com.gastronomia.model.Ingrediente;
 
 public class IngredientBOTest {
 	
-	Ingrediente testIngredient = new Ingrediente();
-	IngredienteBO bo = new IngredienteBO();
+	private Ingrediente testIngredient;
+	private IngredienteBO bo;
 	
-	private void buildIngredient() {
+	@Before
+	public void setUp() {
+		testIngredient = new Ingrediente();
+		bo = new IngredienteBO();
 		testIngredient.setId(99);
 		testIngredient.setNome("testing");
 		testIngredient.setOrigem("test");
@@ -23,7 +27,6 @@ public class IngredientBOTest {
 	
 	@Test
 	public void createTest() throws NoSuchAlgorithmException, ValidationException {
-		buildIngredient();
 		boolean result = bo.createIngrediente(testIngredient);
 		assertEquals(true, result);
 	}
