@@ -1,6 +1,8 @@
 package br.com.gastronomia.testsModel;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -42,12 +44,12 @@ public class TestUsuarioModel {
 	@Test
 	public void testUserStatusTrue() {
 		testUser.setStatus(true);
-		assertEquals(true, testUser.isStatus());
+		assertTrue(testUser.isStatus());
 	}
 	
 	@Test
 	public void testUserStatusFalse() {
 		testUser.setStatus(false);
-		assertEquals(false, testUser.isStatus());
+		assertFalse(testUser.isStatus());
 	}
 }
