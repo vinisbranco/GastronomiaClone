@@ -26,6 +26,7 @@ import br.com.gastronomia.dto.UsuarioFormattedDTO;
 import br.com.gastronomia.model.Token;
 import br.com.gastronomia.model.Usuario;
 import br.com.gastronomia.util.EncryptUtil;
+import br.com.gastronomia.util.ExportCSV;
 import br.com.gastronomia.util.TokenGenerator;
 
 import static javax.ws.rs.core.Response.Status.UNAUTHORIZED;
@@ -33,7 +34,8 @@ import static javax.ws.rs.core.Response.Status.UNAUTHORIZED;
 
 @Path("auth")
 public class AuthController {
-	Logger logger = Logger.getLogger("controller.AuthController");
+	
+	private static final Logger LOGGER = Logger.getLogger(AuthController.class);
 
 	private UsuarioBO usuarioBO = new UsuarioBO();
 	private UsuarioDAO usuarioDAO = new UsuarioDAO();
@@ -58,7 +60,7 @@ public class AuthController {
 			usuario = usuarioBO.userExists(usuarioLogin);
 			token.setToken(TokenGenerator.issueToken(mapper.writeValueAsString(usuario)));
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.debug("An Exception has occurred", e);
 			return Response.status(UNAUTHORIZED).build();
 		}
 		return Response.ok().entity(token).build();
@@ -88,19 +90,19 @@ public class AuthController {
 	@Path("/me")
 	@Produces("application/json; charset=UTF-8")
 	public UsuarioFormattedDTO getMe() throws IOException {
-
-		logger.debug("Session ME: " + new Date() + " - " + request.getSession().hashCode());
+		
+		LOGGER.debug("Session ME: " + new Date() + " - " + request.getSession().hashCode());
 
 		System.out.println(request.getSession().getAttributeNames().toString());
 		request.getSession().getAttribute("usuario");
 		Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
 
 		if (usuario != null) {
-			logger.debug("Usuario inserido na session: " + new Date() + " - " + usuario.toString());
+			LOGGER.debug("Usuario inserido na session: " + new Date() + " - " + usuario.toString());
 			return UsuarioFormattedDTO.getFromUser(usuario);
 		}
 
-		logger.debug("Usuario não existe na session");
+		LOGGER.debug("Usuario não existe na session");
 		response.setStatus(Response.Status.BAD_REQUEST.getStatusCode());
 		response.flushBuffer();
 		return null;

@@ -15,6 +15,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 
+import org.apache.log4j.Logger;
+
 import br.com.gastronomia.bo.GrupoReceitasBO;
 import br.com.gastronomia.dao.GrupoReceitasDAO;
 import br.com.gastronomia.dto.StandardResponseDTO;
@@ -28,6 +30,7 @@ public class GrupoController {
 	private GrupoReceitasBO grupoReceitasBO = new GrupoReceitasBO();
 	private GrupoReceitasDAO grupoReceitasDAO = new GrupoReceitasDAO();
 	private EncryptUtil encryptUtil = new EncryptUtil();
+	private static final Logger LOGGER = Logger.getLogger(GrupoController.class);
 
 	@Context
 	private HttpServletRequest request;
@@ -109,8 +112,8 @@ public class GrupoController {
 		try {
 			grupoReceitasBO.updateGroup(grupo);
 
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (ValidationException e) {
+			LOGGER.debug("An Validation Exception has occurred", e);
 			return Response.ok().status(Response.Status.BAD_REQUEST).build();
 		}
 		return Response.ok().entity(new StandardResponseDTO(true, "Grupo de Receita "+ grupo.getNome()+ " editado com sucesso!")).status(Response.Status.ACCEPTED).build();

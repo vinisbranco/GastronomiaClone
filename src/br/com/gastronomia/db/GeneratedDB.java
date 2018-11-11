@@ -7,7 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class GeneratedDB {
-	public static Session factory;
+	private static Session factory;
 
 	// Empty Constructor  
 	public GeneratedDB() {

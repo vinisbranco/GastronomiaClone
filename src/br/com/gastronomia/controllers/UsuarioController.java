@@ -15,6 +15,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 
+import org.apache.log4j.Logger;
+
 import br.com.gastronomia.bo.UsuarioBO;
 import br.com.gastronomia.dao.UsuarioDAO;
 import br.com.gastronomia.dto.StandardResponseDTO;
@@ -28,6 +30,7 @@ public class UsuarioController {
 	private UsuarioBO usuarioBO = new UsuarioBO();
 	private UsuarioDAO usuarioDAO = new UsuarioDAO();
 	private EncryptUtil encryptUtil = new EncryptUtil();
+	private static final Logger LOGGER = Logger.getLogger(UsuarioController.class);
 
 	@Context
 	private HttpServletRequest request;
@@ -101,7 +104,7 @@ public class UsuarioController {
 		try {
 			usuarioBO.updateUser(usuario);
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.debug("An Exception has occurred", e);
 			return Response.ok().status(Response.Status.BAD_REQUEST).build();
 		}
 		return Response.ok().entity(new StandardResponseDTO(true, "Usuario "+usuario.getNome()+ " editado com sucesso!")).status(Response.Status.ACCEPTED).build();

@@ -15,6 +15,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 
+import org.apache.log4j.Logger;
+
 import br.com.gastronomia.bo.AtributoBO;
 import br.com.gastronomia.dao.AtributoDAO;
 import br.com.gastronomia.dto.StandardResponseDTO;
@@ -28,6 +30,7 @@ public class AtributoController {
 	private AtributoBO atributoBO = new AtributoBO();
 	private AtributoDAO atributoDAO = new AtributoDAO();
 	private EncryptUtil encryptUtil = new EncryptUtil();
+	private static final Logger LOGGER = Logger.getLogger(AtributoController.class);
 
 	@Context
 	private HttpServletRequest request;
@@ -105,8 +108,8 @@ public class AtributoController {
 		try {
 			atributoBO.updateAtributo(atributo);
 
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (ValidationException e) {
+			LOGGER.debug("A Validation Exception has occurred", e);
 			return Response.ok().status(Response.Status.BAD_REQUEST).build();
 		}
 		return Response.ok().entity(new StandardResponseDTO(true, "Atributo: "+atributo.getNome()+" editado com sucesso!")).status(Response.Status.ACCEPTED).build();
