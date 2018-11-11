@@ -1,7 +1,7 @@
 create database gastronomia;
 use gastronomia;
 create table Atributo (
-	IdAtributo bigint(20) primary key,
+	IdAtributo bigint(20) auto_increment primary key,
 	Multiplicador bigint(20),
 	Nome varchar(255),
 	Obrigatorio bit(1) not null,
@@ -10,13 +10,13 @@ create table Atributo (
 	Ordem bigint(20)
 );
 create table GrupoReceita (
-	IdGrupo bigint(20) primary key,
+	IdGrupo bigint(20) auto_increment primary key,
 	CustoPorcao double,
 	Nome varchar(255),
 	Status bit(1) not null
 );
 create table Usuario (
-	IdUsuario bigint(20) primary key,
+	IdUsuario bigint(20) auto_increment primary key,
 	Cpf varchar(255),
 	Email varchar(255),
 	Matricula varchar(255),
@@ -32,7 +32,7 @@ create table Ingrediente_Atributo (
 	constraint pk_Ingrediente_Atributo primary key (IdAtributo, IdIngrediente)
 );
 create table Receita (
-	IdReceita bigint(20) primary key,
+	IdReceita bigint(20) auto_increment primary key,
 	Imagem varchar(255) not null,
 	Nome varchar(255),
 	Passos longtext not null,
@@ -49,7 +49,7 @@ create table ReceitaUsuario (
 	constraint pk_ReceitaUsuario primary key (IdReceita, IdUsuario)
 );
 create table Ingrediente (
-	IdIngrediente bigint(20) primary key,
+	IdIngrediente bigint(20) auto_increment primary key,
 	Nome varchar(255),
 	Origem varchar(255),
 	Status bit(1) not null,
