@@ -9,9 +9,9 @@ public class Constantes {
 //br.ages.crud.util.config_bd ambiente
 	public static final String AMBIENTE_PROPERTIES = "ambiente";
 	public static final String CONEXAO_BD_DRIVE = "conexao.driver.mysql";
-	public static final String CONEXAO_BD_URL = "conexao.url";
-	public static final String CONEXAO_BD_USER = "conexao.user";
-	public static final String CONEXAO_BD_PASSWORD = "conexao.password";
+	public static final String CONEXAO_BD_URL = "connection.url";
+	public static final String CONEXAO_BD_USER = "connection.user";
+	public static final String CONEXAO_BD_PASSWORD = "connection.password";
 	
 	public static final String VERSAO_SISTEMA = "version";
 	
