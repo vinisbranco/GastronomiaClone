@@ -1,23 +1,24 @@
 package br.com.gastronomia.util;
 
 import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 
 public class ExportCSV {
+	
+	private static final Logger LOGGER = Logger.getLogger(ExportCSV.class);
 
 	private static void generateCsvFile(String sFileName) {
 		try(FileWriter writer = new FileWriter(sFileName)) {
@@ -42,11 +43,9 @@ public class ExportCSV {
 			writer.flush();
 			writer.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.debug("An IO Exception occurred", e);
 		}
 	}
-
-
 
 	public static void exportData(String filename) throws ClassNotFoundException, SQLException {
 
@@ -61,7 +60,7 @@ public class ExportCSV {
 			stmt.executeQuery(query);
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.debug("An Exception occurred", e);
 		} finally {
 			conexao.close();
 			if(stmt != null)
@@ -95,7 +94,7 @@ public class ExportCSV {
 			bw.flush();
 			bw.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.debug("An IO Exception occurred", e);
 		}
 	}
 

@@ -2,6 +2,8 @@ package br.com.gastronomia.db;
 
 import br.com.gastronomia.exception.ValidationException;
 import br.com.gastronomia.imp.GenericDAO;
+
+import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -11,6 +13,8 @@ import java.util.List;
 @SuppressWarnings("unchecked")
 
 public class GenericHibernateDAO<T> implements GenericDAO<T> {
+	
+	private static final Logger LOGGER = Logger.getLogger(GenericHibernateDAO.class);
 
 	@Override
 	public long save(T obj) throws ValidationException {
@@ -25,7 +29,7 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 			} catch (HibernateException e) {
 				if (tx != null)
 					tx.rollback();
-				e.printStackTrace();
+				LOGGER.debug("A Hibernate Exception has occurred", e);
 				System.out.println("Erro de HibernateException ao salvar no GenericHibernateDAO: " + e.getMessage());
                 throw new ValidationException("invalido");
 			} finally {
@@ -34,7 +38,7 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 			System.out.println("ID: " + id);
 			return id;
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.debug("An Exception has occurred", e);
 			System.out.println("Erro de Exception no salvar do GenericHibernateDAO: " + e.getMessage());
             throw new ValidationException("invalido");
 		}
@@ -53,7 +57,7 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
-			e.printStackTrace();
+			LOGGER.debug("A Hibernate Exception has occurred", e);
 			System.out.println("Erro de HibernateException ao excluir no GenericHibernateDAO: " + e.getMessage());
             throw new ValidationException("invalido");
         } finally {
@@ -92,7 +96,7 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
-			e.printStackTrace();
+			LOGGER.debug("A Hibernate Exception has occurred", e);
 			System.out.println("Erro de HibernateException ao excluir no GenericHibernateDAO: " + e.getMessage());
             throw new ValidationException("invalido");
 		} finally {
@@ -153,7 +157,7 @@ public class GenericHibernateDAO<T> implements GenericDAO<T> {
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
-			e.printStackTrace();
+			LOGGER.debug("A Hibernate Exception has occurred", e);
             throw new ValidationException("invalido");
 		} finally {
 			session.close();

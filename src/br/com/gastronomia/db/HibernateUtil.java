@@ -2,6 +2,7 @@ package br.com.gastronomia.db;
 
 import java.util.Properties;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -12,6 +13,7 @@ public class HibernateUtil {
 
 	private static SessionFactory factory;
 	private static Session session;
+	private static final Logger LOGGER = Logger.getLogger(HibernateUtil.class);
 
 	public static Session getFactory() {
 
@@ -34,7 +36,7 @@ public class HibernateUtil {
 			session = factory.openSession();
 
 		} catch (Throwable ex) {
-			ex.printStackTrace();
+			LOGGER.debug("An Exception has occurred", ex);
 			System.out.println("Erro ao iniciar sessao no HibernateUtil: " + ex.getMessage());
 			System.err.println("Failed to create sessionFactory object." + ex);
 			throw new ExceptionInInitializerError(ex);

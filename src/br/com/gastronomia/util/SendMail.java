@@ -3,6 +3,7 @@ package br.com.gastronomia.util;
 import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
+import org.apache.log4j.Logger;
 
 /**
  * Classe para realizar o envio de e-mails.
@@ -12,6 +13,9 @@ import org.apache.commons.mail.SimpleEmail;
  *
  **/
 public class SendMail {
+	
+	private static final Logger LOGGER = Logger.getLogger(SendMail.class);
+	
 	public SendMail() {
 		// TODO Auto-generated constructor stub
 	}
@@ -41,7 +45,7 @@ public class SendMail {
 
 		} catch (EmailException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.debug("An E-mail Exception has occurred", e);
 		}
 
 	}

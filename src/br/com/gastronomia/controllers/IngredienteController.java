@@ -13,12 +13,16 @@ import javax.servlet.http.HttpSession;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
+
+import org.apache.log4j.Logger;
+
 import java.sql.SQLException;
 
 @Path("ingredientes")
 public class IngredienteController {
 	private IngredienteBO ingredienteBO = new IngredienteBO();
 	private EncryptUtil encryptUtil = new EncryptUtil();
+	private static final Logger LOGGER = Logger.getLogger(IngredienteController.class);
 
 	@Context
 	private HttpServletRequest request;
@@ -91,8 +95,8 @@ public class IngredienteController {
 	public Response update(Ingrediente ingrediente) throws PersistenciaException, ValidationException {
 		try {
 			ingredienteBO.updateIngrediente(ingrediente);
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (ValidationException e) {
+			LOGGER.debug("An Validation Exception has occurred", e);
 			return Response.ok().status(Response.Status.BAD_REQUEST).build();
 		}
 		return Response.ok().entity(new StandardResponseDTO(true, "Ingrediente "+ingrediente.getNome()+ " editado com sucesso!")).status(Response.Status.ACCEPTED).build();
