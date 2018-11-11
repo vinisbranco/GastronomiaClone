@@ -2,5 +2,5 @@
 /.ideia/
 /out/
 /.settings/
-
+.classpath
 \.DS_Store
