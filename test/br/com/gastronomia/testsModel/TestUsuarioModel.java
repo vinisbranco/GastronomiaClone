@@ -1,4 +1,4 @@
-package br.gastronomia.testsModel;
+package test.br.com.gastronomia.testsModel;
 
 import static org.junit.Assert.assertEquals;
 
