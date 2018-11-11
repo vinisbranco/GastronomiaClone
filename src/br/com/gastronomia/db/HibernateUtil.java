@@ -21,7 +21,6 @@ public class HibernateUtil {
                 Properties prop = ReadProperties.read();
                 String localDb = prop.getProperty("local.db", "false");
                 if (localDb.equals("false")) {
-                	prop.forEach((x,y) -> System.out.println(x + " -> " + y));
                     config = new Configuration().configure("hibernate.cfg.xml");
                     config.setProperty("hibernate.connection.url", prop.getProperty("connection.url"));
                     config.setProperty("hibernate.connection.password", prop.getProperty("connection.password"));
