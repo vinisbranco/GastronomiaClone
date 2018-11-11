@@ -8,13 +8,13 @@ import java.util.List;
 import br.com.gastronomia.dao.UsuarioDAO;
 import br.com.gastronomia.exception.ValidationException;
 import br.com.gastronomia.model.Usuario;
-import br.com.gastronomia.util.Constantes;
 import br.com.gastronomia.util.EncryptUtil;
 import br.com.gastronomia.util.MensagemContantes;
 import br.com.gastronomia.util.Validator;
 
 public class UsuarioBO {
 	private UsuarioDAO usuarioDAO;
+	private String validationException = "invalido";
 
 	public UsuarioBO() {
 		usuarioDAO = new UsuarioDAO();
@@ -27,7 +27,7 @@ public class UsuarioBO {
 	public boolean validateCPF(Usuario usuario) throws ValidationException {
 		if (Validator.validaCpf.fazConta(usuario.getCpf()))
 			return true;
-		throw new ValidationException("invalido");
+		throw new ValidationException(validationException);
 
 	}
 
@@ -38,7 +38,7 @@ public class UsuarioBO {
 			usuarioDAO.save(usuario);
 			return true;
 		}
-		throw new ValidationException("invalido");
+		throw new ValidationException(validationException);
 
 	}
 
@@ -61,7 +61,7 @@ public class UsuarioBO {
 			usuario.setSenha(encryptedPassword);
 			return usuarioDAO.updateUser(usuario);
 		}
-		throw new ValidationException("invalido");
+		throw new ValidationException(validationException);
 
 	}
 
@@ -94,28 +94,28 @@ public class UsuarioBO {
 		if (usuarioLogin != null) {
 			return usuarioDAO.findUserByCPF(usuarioLogin.getCpf());
 		}
-		throw new ValidationException("CPF Invalido");
+		throw new ValidationException("CPF "+validationException);
 	}
 	
 	public Usuario getUserByEmail(Usuario usuarioLogin) throws ValidationException {
 		if (usuarioLogin != null) {
 			return usuarioDAO.findUserByEmail(usuarioLogin.getEmail());
 		}
-		throw new ValidationException("Email Invalido");
+		throw new ValidationException("Email "+validationException);
 	}
 	
 	public Usuario getUserByMatricula(Usuario usuarioLogin) throws ValidationException {
 		if (usuarioLogin != null) {
 			return usuarioDAO.findUserByMatricula(usuarioLogin.getMatricula());
 		}
-		throw new ValidationException("Email Invalido");
+		throw new ValidationException("Email "+validationException);
 	}
 	
 	public Usuario getUserById(long id) throws ValidationException {
 		if (id > 0) {
 			return usuarioDAO.findUserByID(id);
 		}
-		throw new ValidationException("invalido");
+		throw new ValidationException(validationException);
 
 	}
 

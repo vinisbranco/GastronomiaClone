@@ -110,6 +110,14 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>5.2.10.Final</version>
 		</dependency>
+		
+		<dependency>
+    		<groupId>io.github.bonigarcia</groupId>
+    		<artifactId>webdrivermanager</artifactId>
+    		<version>3.0.0</version>
+    		<scope>test</scope>
+		</dependency>
+		
 		<!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
 		<dependency>
 			<groupId>javax.validation</groupId>

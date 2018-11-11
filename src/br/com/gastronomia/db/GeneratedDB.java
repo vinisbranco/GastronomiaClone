@@ -9,7 +9,7 @@ import javax.persistence.Persistence;
 public class GeneratedDB {
 	private static Session factory;
 
-
+	// Empty Constructor  
 	public GeneratedDB() {
 
 	}
