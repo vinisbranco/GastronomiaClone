@@ -11,10 +11,15 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
+
+import org.apache.log4j.Logger;
+
 import java.security.NoSuchAlgorithmException;
 
 @Path("/")
 public class APIController {
+	
+	private static final Logger LOGGER = Logger.getLogger(APIController.class);
 
 	@GET
 	@Path("/")
@@ -35,7 +40,7 @@ public class APIController {
             try {
                 encryptedPassword = EncryptUtil.encrypt2("Ages2017");
             } catch (NoSuchAlgorithmException e) {
-                e.printStackTrace();
+                LOGGER.debug("A No Such Algorithm Exception has occurred", e);
             }
 
             usuario = new Usuario();
@@ -51,7 +56,7 @@ public class APIController {
                 (new UsuarioDAO()).save(usuario);
                 return Response.ok().entity(usuario).build();
             } catch (ValidationException e) {
-                e.printStackTrace();
+                LOGGER.debug("A Validation Exception has occurred", e);
             }
             return Response.ok().entity(Response.Status.BAD_REQUEST).build();
         }

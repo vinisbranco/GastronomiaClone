@@ -13,12 +13,16 @@ import javax.servlet.http.HttpSession;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
+
+import org.apache.log4j.Logger;
+
 import java.sql.SQLException;
 
 @Path("receitas")
 public class ReceitaController {
     private ReceitaBO receitaBO = new ReceitaBO();
     private EncryptUtil encryptUtil = new EncryptUtil();
+    private static final Logger LOGGER = Logger.getLogger(ReceitaController.class);
 
     @Context
     private HttpServletRequest request;
@@ -90,7 +94,7 @@ public class ReceitaController {
         try {
             receitaBO.updateReceita(receita);
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.debug("An Exception has occurred", e);
             return Response.ok().status(Response.Status.BAD_REQUEST).build();
         }
         return Response.ok().entity(new StandardResponseDTO(true, "Receita "+receita.getNome()+ " editado com sucesso!")).status(Response.Status.ACCEPTED).build();
