@@ -1,4 +1,4 @@
-package br.com.gastronomia.testsDAO;
+package br.com.gastronomia.dao;
 
 import br.com.gastronomia.dao.UsuarioDAO;
 import br.com.gastronomia.exception.ValidationException;

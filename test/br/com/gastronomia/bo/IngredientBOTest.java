@@ -1,4 +1,4 @@
-package br.com.gastronomia.testIngredientBO;
+package br.com.gastronomia.bo;
 
 //import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

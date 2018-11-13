@@ -1,4 +1,4 @@
- package br.com.gastronomia.testsDAO;
+ package br.com.gastronomia.db;
 
 import br.com.gastronomia.db.GeneratedDB;
 

@@ -1,4 +1,4 @@
-package testMockitoAtributoBO;
+package br.com.gastronomia.bo;
 
 import br.com.gastronomia.bo.AtributoBO;
 import br.com.gastronomia.bo.UsuarioBO;
